@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 3564 2005" enable-background="new 0 0 3564 2005" xml:space="preserve">
+<image overflow="visible" width="3564" height="2005" xlink:href="earth-large.jpg" >
+</image>
+<path display="none" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-miterlimit="10" d="M1640.7,876.6
+	c0,0,188.6,48,176.5,73.1c-59.1,122-165.8,143.9-165.8,143.9s-42.4-287.8,0-215.1c410.7,704,1257.7,332.5,1257.7,332.5"/>
+<polygon fill="#00FBE6" points="3509,1740 3078,1740 2994,1660.1 2994,1397.8 3347.3,1397.9 3509,1554.9 "/>
+<g>
+	<polygon points="3056,1458 3119,1458 3119,1680.7 3056,1618.2 	"/>
+	<polygon points="3310,1458.3 3373,1520 3373,1618 3447,1618 3447,1680 3310,1680 	"/>
+	<path d="M3186.3,1458c-40.3,0-61.3,20.7-61.3,61c0,0.5,0,1,0,1h59.2h104.3h17.5v-62C3306,1458,3197.1,1458,3186.3,1458z"/>
+	<g>
+		<path d="M3186.6,1599c6.6,0,59.4,0,59.4,0v12h60c0-7,0-9.5,0-11.4c0-40.3-18.7-62.6-59-62.6c-8.9,0-64,0-64,0v-10h-58
+			c0,5,0,8.4,0,12.1C3125,1579.4,3146.3,1599,3186.6,1599z"/>
+		<path d="M3125,1618v62c0,0,91.1,0,122,0c40,0,59-20,59-60.2c0-0.6,0-1.8,0-1.8H3125z"/>
+	</g>
+</g>
+<path fill="none" stroke="#FFFFFF" stroke-width="4" stroke-miterlimit="10" d="M3018,1765c0,0-489.6,410.3-905.6-253.7
+	c0,0,64,1,162,54.5l-134,97.5c0,0-17.3-109.2-17.3-146"/>
+</svg>
