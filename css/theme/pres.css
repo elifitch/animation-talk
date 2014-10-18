@@ -1,10 +1,62 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:300,100);
 .reveal section.work svg {
   width: 100%;
   position: absolute;
   bottom: -100%;
   right: -10%; }
 
-.asdf {
-  left: 0; }
+.particle {
+  background: whitesmoke;
+  height: 100%;
+  font-family: 'Roboto';
+  padding: 0;
+  margin: 0; }
+  .particle h1 {
+    font-family: 'Roboto';
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-size: 2em;
+    color: #777;
+    text-shadow: none;
+    text-transform: uppercase;
+    font-weight: 100;
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    text-align: center;
+    /* background-color: whitesmoke; */
+    z-index: 5;
+    left: 50%;
+    -webkit-transform: translateX(-50%); }
+  .particle canvas {
+    position: absolute;
+    left: 50%;
+    bottom: -10%;
+    -webkit-transform: translateX(-50%) translateZ(0); }
+  .particle .gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: -moz-linear-gradient(top, whitesmoke 50%, rgba(245, 245, 245, 0) 75%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(60%, whitesmoke), color-stop(75%, rgba(245, 245, 245, 0)));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, whitesmoke 50%, rgba(245, 245, 245, 0) 75%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, whitesmoke 50%, rgba(245, 245, 245, 0) 75%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, whitesmoke 50%, rgba(245, 245, 245, 0) 75%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, whitesmoke 50%, rgba(245, 245, 245, 0) 75%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00f5f5f5',GradientType=0 );
+    /* IE6-9 */ }
+
+.reveal .emojicon {
+  font-family: sans-serif;
+  text-shadow: none; }
 
 /*# sourceMappingURL=pres.css.map */
