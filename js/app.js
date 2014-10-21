@@ -177,3 +177,20 @@ function canvasAnim(){
 // });
 particles = [];
 canvasAnim();
+
+
+
+//animating gradient
+(function(){
+  var start = null;
+  // var element = document.getElementById("SomeElementYouWantToAnimate");
+  var element = $('body')[0]
+  var rot = 0;
+  function step() {
+    rot++
+    element.style.background = 'linear-gradient('+rot/10+'deg, #2980b9 0%,#9B59B6 100%)'
+    window.requestAnimationFrame(step);
+  }
+
+  window.requestAnimationFrame(step);
+}())
