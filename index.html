@@ -196,11 +196,20 @@
 						</code>
 					</pre>
 
-					<p>So what happens when the designer wants the translateX to take an extra 400ms?</p>
+					<p class="fragment">So what happens when the designer wants the translateX to take an extra 400ms?</p>
 					
 					<!-- <div class="translate"></div> -->
 					<aside class="notes">
 						I know which properties give the most performance now, I can optimize my CSS animations, why not use for everything.
+					</aside>
+				</section>
+
+				<section data-background="img/blinds.gif">
+					<h2 class="fragment">This, basically.</h2>
+					<aside class="notes">
+						Managing CSS keyframes, especially when they get complex, can be hard, it can be time consuming.
+						Impedes experimentation.
+						And in the end, when you want to get creative, CSS animation is limiting(no independent transforms, different steps with different easing etc)
 					</aside>
 				</section>
 
@@ -227,6 +236,7 @@
 				progress: false,
 				history: true,
 				center: true,
+				width: 1200,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
