@@ -180,17 +180,24 @@ canvasAnim();
 
 
 
-//animating gradient
-(function(){
-  var start = null;
-  // var element = document.getElementById("SomeElementYouWantToAnimate");
-  var element = $('body')[0]
-  var rot = 0;
-  function step() {
-    rot++
-    element.style.background = 'linear-gradient('+rot/10+'deg, #2980b9 0%,#9B59B6 100%)'
-    window.requestAnimationFrame(step);
-  }
+// //animating gradient
+// (function(){
+//   var start = null;
+//   // var element = document.getElementById("SomeElementYouWantToAnimate");
+//   var element = $('.animated-gradient')[0]
+//   var rot = 0;
+//   function step() {
+//     rot++
+//     element.style.background = 'linear-gradient('+rot/10+'deg, #2980b9 0%,#9B59B6 100%)'
+//     window.requestAnimationFrame(step);
+//   }
 
-  window.requestAnimationFrame(step);
-}())
+//   window.requestAnimationFrame(step);
+// }())
+
+
+//add to left container
+for(var i=0; i<=100; i++) {
+  $('.left-container').append('<div class="left"></div>');
+  $('.translate-container').append('<div class="translate"></div>');
+}

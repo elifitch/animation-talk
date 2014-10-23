@@ -1,0 +1,65 @@
+.properties {
+    .left, .translate {
+        height: 40px;
+        width: 40px;
+        // margin: 20% 0;
+        border-radius: 100%;
+        display: block;
+    }
+
+    .left {
+        // -webkit-animation: left 1s infinite ease-in-out;
+        -webkit-animation-name: left;
+        -webkit-animation-duration: 1s;
+        -webkit-animation-iteration-count: infinite;
+        position: relative;
+        display: inline-block;
+        background: fuchsia;
+    }
+    .translate {
+        // -webkit-animation: trans 1s infinite;
+        -webkit-animation-name: trans;
+        -webkit-animation-duration: 1s;
+        -webkit-animation-iteration-count: infinite;
+        display: inline-block;
+        background: blue;
+    }
+    .translate-container, .left-container {
+        display: block;
+        position: absolute;
+        top: 100%;
+    }
+}
+
+@-webkit-keyframes left {
+    0% {
+        left: -100px;
+    }
+    50% {
+        left: 100px;
+    }
+    100% {
+        left: -100px;
+    }
+}
+
+@-webkit-keyframes trans {
+    0% {
+        -webkit-transform: translate3d(-100px,0,0)
+    }
+    50% {
+        -webkit-transform: translate3d(100px,0,0)
+    }
+    100% {
+        -webkit-transform: translate3d(-100px,0,0)
+    }
+}
+
+@for $i from 1 through 500 {
+    .left:nth-child(#{$i}) {
+        -webkit-animation-delay: ($i*0.01)#{s};
+    }
+    .translate:nth-child(#{$i}) {
+        -webkit-animation-delay: ($i*0.01)#{s};
+    }
+}

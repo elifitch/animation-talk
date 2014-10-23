@@ -39,7 +39,7 @@
 	</head>
 
 	<body>
-
+		<div class="animated-gradient"></div>
 		<div class="reveal">
 
 			<!-- Any section element inside of this container is displayed as a slide -->
@@ -90,14 +90,120 @@
 				</section>
 
 				<section>
-					<h1>Technologies we use to animate on the web</h1>
-					<h3>CSS</h3>
-					<h3>Javascript</h3>
+					<h1>Web Animation Technologies</h1>
+					<h3><span class="fragment">CSS&nbsp;</span><span class="fragment">|&nbsp;Javascript</span></h3>
 				</section>
 
 				<section>
 					<h1>CSS is great for <span class="fragment shrink" style="display: inline-block">small</span> state changes</h1>
+					<aside class="notes">
+						This applies to most interactions, really.
+						Think changing the background on a ghost button, animating a button press to give the sense of 3d.
+						CSS makse such small changes really easy and quick to whip up, making carelessness easy too.
+						Using javascript to manage states is cool, but you can store your animations in a class and transition between them, CSS is driving that anim
+					</aside>
 				</section>
+
+				<section class="properties">
+					<h1>CSS properties are not created equal.</h1>
+					<div class="fragment left-container fade-out"></div>
+					<div class="fragment translate-container"></div>
+					
+					<!-- <div class="translate"></div> -->
+					<aside class="notes">
+						
+					</aside>
+				</section>
+
+				<section>
+					<h1>Browser rendering concerns</h1>
+					<p class="fragment">Layout</p>
+					<p class="fragment">Paint</p>
+					<p class="fragment">Composite</p>
+					
+					<!-- <div class="translate"></div> -->
+					<aside class="notes">
+						Describe layering, composting, painting.
+						Avoid layout: layout is really really fucking expensive
+						Also if you're changing heights, widths etc can change the position of other elements it causes more layout changes and more and more and more and OH GOD
+					</aside>
+				</section>
+
+				<section>
+					<h1>Property breakdown</h1>
+					<div class="fragment" style="display: inline-block; width: 25%; margin-right: 10%; text-align: left">
+						<h3>Layout</h3>
+						<hr>
+						<p>width/height</p>
+						<p>top/right/bottom/left</p>
+						<p>padding</p>
+						<p>font-size</p>
+					</div>
+					<div class="fragment" style="display: inline-block; width: 25%; margin-right: 10%; text-align: left">
+						<h3>Paint</h3>
+						<hr>
+						<p>color</p>
+						<p>background</p>
+						<p>box-shadow</p>
+						<p>border-radius</p>
+					</div>
+					<div class="fragment" style="display: inline-block; width: 25%; text-align: left">
+						<h3>Composite</h3>
+						<hr>
+						<p>opacity</p>
+						<p>scale</p>
+						<p>rotate</p>
+						<p>translate</p>
+					</div>
+					
+					<!-- <div class="translate"></div> -->
+					<aside class="notes">
+						Describe layering, composting, painting.
+						Avoid layout: layout is really really fucking expensive
+						Also if you're changing heights, widths etc can change the position of other elements it causes more layout changes and more and more and more and OH GOD
+					</aside>
+				</section>
+
+				<section>
+					<h1>Why not use CSS to animate everything?</h1>
+					
+					<!-- <div class="translate"></div> -->
+					<aside class="notes">
+						I know which properties give the most performance now, I can optimize my CSS animations, why not use for everything.
+					</aside>
+				</section>
+
+				<section>
+					<h1>Check this out</h1>
+					<pre>
+						<code class="css">
+@keyframes myAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0, 0);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: translate(100px, 0);
+  }
+  100% {
+    transform: translate(100px, 100px);
+  }
+}
+						</code>
+					</pre>
+
+					<p>So what happens when the designer wants the translateX to take an extra 400ms?</p>
+					
+					<!-- <div class="translate"></div> -->
+					<aside class="notes">
+						I know which properties give the most performance now, I can optimize my CSS animations, why not use for everything.
+					</aside>
+				</section>
+
 				
 
 			</div>
@@ -123,7 +229,7 @@
 				center: true,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
 
 				// Parallax scrolling
 				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
