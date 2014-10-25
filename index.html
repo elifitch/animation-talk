@@ -156,7 +156,6 @@
 						<p>translate</p>
 					</div>
 					
-					<!-- <div class="translate"></div> -->
 					<aside class="notes">
 						Describe layering, composting, painting.
 						Avoid layout: layout is really really fucking expensive
@@ -166,10 +165,84 @@
 
 				<section>
 					<h1>Why not use CSS to animate everything?</h1>
+					<h2 class="fragment">It can be a little limiting.</h2>
 					
-					<!-- <div class="translate"></div> -->
+					<aside class="notes"></aside>
+				</section>
+
+				<section data-background="https://gimmebar-assets.s3.amazonaws.com/4f4fe1d47cd85.gif">
+					<h1>JS gives you the power.</h1>
+					
+					<aside class="notes"></aside>
+				</section>
+
+				<section>
+					<h2 class="fragment">Independent transforms</h2>
+					<h2 class="fragment">Physics based, natural UI</h2>
+					<h2 class="fragment">Granular animation control</h2>
+					<h2 class="fragment">Animating along bezier curves</h2>
+					<h2 class="fragment">Tween javascript objects</h2>
+					
+					<aside class="notes"></aside>
+				</section>
+
+				<section>
+					<h1>jQuery $.animate is the devil.</h1>
+					
 					<aside class="notes">
-						I know which properties give the most performance now, I can optimize my CSS animations, why not use for everything.
+						A lot of people (maybe not y'all, but still a lot of people) conflate jQuery and Javascript animation.
+						jQuery takes a bad approach to animating, using setinterval instead of requestanimationframe
+					</aside>
+				</section>
+
+				<section>
+					<h1>setInterval vs. requestAnimationFrame</h1>
+					<!-- <iframe id="cp_embed_5617a718d5abb68caae7c0600236e7b1" src="//codepen.io/GreenSock/embed/5617a718d5abb68caae7c0600236e7b1?height=300&amp;theme-id=1&amp;slug-hash=5617a718d5abb68caae7c0600236e7b1&amp;user=GreenSock&amp;default-tab=result&amp;animations=run" scrolling="no" frameborder="0" height="300" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe> -->
+					<img class="fragment" src="img/setinterval.png"/>
+					<aside class="notes">
+						With RAF "The browser can optimize concurrent animations together into a single reflow and repaint cycle, leading to higher fidelity animation. For example, JS-based animations synchronized with CSS transitions or SVG SMIL." Also Animations in inactive tabs will stop, allowing the CPU to chill. It's also synced with refresh rate so you won't drop frames
+					</aside>
+				</section>
+
+				<section>
+					<h1>RAF isn't scary</h1>
+
+					<pre>
+						<code class="javascript fragment">
+var width = 0;
+
+// runs every 17ms to try to achieve 60fps (1000ms/60 ~= 17ms).
+var draw = setInterval(function() {
+	if(width <= 100) {
+		element.style.width = (width += 1)+'%';
+	} else {
+		clearInterval(draw)
+	}
+}, 17);
+						</code>
+					</pre>
+
+					<pre>
+						<code class="javascript fragment">
+// requestAnimationFrame: Attempts to run at 60fps based on
+// whether the browser is in an optimal state.
+var width = 0;
+
+function draw() {
+       if(width <= 100){
+         window.requestAnimationFrame(draw);
+       } 
+        
+        element.style.width = (width += 1)+'%';
+}
+
+draw();
+						</code>
+					</pre>
+						
+
+					<aside class="notes">
+						You can also get a start time and continue the animation until a certain amount of progress has happened if you want to have time based animations
 					</aside>
 				</section>
 
