@@ -3103,6 +3103,17 @@
   position: absolute; }
 
 .reveal pre {
-  box-shadow: none; }
+  box-shadow: none;
+  font-size: .4em; }
+
+.reveal .stack {
+  position: relative;
+  min-height: 400px; }
+.reveal .stack__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
 
 /*# sourceMappingURL=pres.css.map */

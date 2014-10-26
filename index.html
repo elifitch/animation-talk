@@ -50,6 +50,15 @@
 				</section>
 
 				<section>
+					<h1>Where I shreik about</h1>
+					<h2 class="fragment">Topic</h2>
+					<h2 class="fragment">Topic</h2>
+					<h2 class="fragment">Topic</h2>
+					<h2 class="fragment">Topic</h2>
+					<h2 class="fragment">Topic</h2>
+				</section>
+
+				<section>
 					<h1>So, who is this guy?</h1>
 					<h3 class="emojicon fragment">¯\(º_o)/¯</h3>
 				</section>
@@ -120,12 +129,30 @@
 					<p class="fragment">Layout</p>
 					<p class="fragment">Paint</p>
 					<p class="fragment">Composite</p>
-					
-					<!-- <div class="translate"></div> -->
+
 					<aside class="notes">
 						Describe layering, composting, painting.
 						Avoid layout: layout is really really fucking expensive
 						Also if you're changing heights, widths etc can change the position of other elements it causes more layout changes and more and more and more and OH GOD
+					</aside>
+				</section>
+
+				<section>
+					<h1>Why this matters</h1>
+					<div class="fragment" style="display: inline-block; width: 40%; margin-right: 5%; text-align: left; vertical-align: top">
+						<h3>Left</h3>
+						<hr>
+						<img src="img/layout-paint-composite.png" style="max-height: 500px"/>
+					</div>
+
+					<div class="fragment" style="display: inline-block; width: 40%; margin-right: 5%; text-align: left; vertical-align: top">
+						<h3>TranslateX</h3>
+						<hr>
+						<img src="img/just-composite.png" style="max-height: 500px"/>
+					</div>
+
+					<aside class="notes">
+						Describe this process
 					</aside>
 				</section>
 
@@ -164,24 +191,42 @@
 				</section>
 
 				<section>
+					<h1>TLDR:</h1>
+					<h3 class="fragment" style="text-align: left">Whenever possible, use opacity and transforms</h3>
+					<h3 class="fragment" style="text-align: left">Don't stress too bad about color/background unless doing it to a shitton of elements</h3>
+					<h3 class="fragment" style="text-align: left">Try not to use CSS for layout properties, and if you do, be careful out there kids</h3>
+					
+					<aside class="notes">
+						Describe layering, composting, painting.
+						Avoid layout: layout is really really fucking expensive
+						Also if you're changing heights, widths etc can change the position of other elements it causes more layout changes and more and more and more and OH GOD
+					</aside>
+				</section>
+
+				<section>
 					<h1>Why not use CSS to animate everything?</h1>
 					<h2 class="fragment">It can be a little limiting.</h2>
 					
-					<aside class="notes"></aside>
-				</section>
-
-				<section data-background="https://gimmebar-assets.s3.amazonaws.com/4f4fe1d47cd85.gif">
-					<h1>JS gives you the power.</h1>
-					
-					<aside class="notes"></aside>
+					<aside class="notes">
+						I know which properties give the most performance now, I can optimize my CSS animations, why not use for everything.
+					</aside>
 				</section>
 
 				<section>
 					<h2 class="fragment">Independent transforms</h2>
-					<h2 class="fragment">Physics based, natural UI</h2>
-					<h2 class="fragment">Granular animation control</h2>
-					<h2 class="fragment">Animating along bezier curves</h2>
-					<h2 class="fragment">Tween javascript objects</h2>
+					<h2 class="fragment">Complex easing (physics!)</h2>
+					<h2 class="fragment">Granular control</h2>
+					<h2 class="fragment">Animating along a curve or path</h2>
+					<h2 class="fragment">Animating a ton of elements simultaneously</h2>
+					<h2 class="fragment">IE8 support! <span class="fragment">hahaha </span><span class="fragment">hah </span><span class="fragment">haa... </span><span class="fragment">but seriously. </span></h2>
+					
+					<aside class="notes">
+						Should I do a slide showing each of these things? probably. so where do those slides go??
+					</aside>
+				</section>
+
+				<section data-background="https://gimmebar-assets.s3.amazonaws.com/4f4fe1d47cd85.gif">
+					<h1>JS gives you the power.</h1>
 					
 					<aside class="notes"></aside>
 				</section>
@@ -243,13 +288,28 @@ draw();
 
 					<aside class="notes">
 						You can also get a start time and continue the animation until a certain amount of progress has happened if you want to have time based animations
+						If there's just one "complex" anim in a project (simple button hovers and shit but one rotating gradient), just roll your own JS animation
+						However, if you have more than a handful of these, really really consider using a library.
 					</aside>
 				</section>
 
 				<section>
-					<h1>Check this out</h1>
+					<h1>Don't forget your library card</h1>
+					<h2 class="fragment">GSAP</h2>
+					<h2 class="fragment">Velocity.js</h2>
+					
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+				<section>
+					<h1>Workflow</h1>
 					<pre>
 						<code class="css">
+.logo {
+	animation: myAnimation 2s linear forwards;
+}
 @keyframes myAnimation {
   0% {
     opacity: 0;
@@ -260,21 +320,19 @@ draw();
     transform: scale(1, 1);
   }
   50% {
-    transform: translate(100px, 0);
+    transform: translate(0px, 0);
   }
   100% {
-    transform: translate(100px, 100px);
+    transform: translate(100px, 0);
   }
 }
 						</code>
 					</pre>
 
-					<p class="fragment">So what happens when the designer wants the translateX to take an extra 400ms?</p>
+					<p class="fragment">So what happens when the somebody says the translateX should take extra 400ms?</p>
 					
 					<!-- <div class="translate"></div> -->
-					<aside class="notes">
-						I know which properties give the most performance now, I can optimize my CSS animations, why not use for everything.
-					</aside>
+					<aside class="notes"></aside>
 				</section>
 
 				<section data-background="img/blinds.gif">
@@ -287,16 +345,81 @@ draw();
 				</section>
 
 				<section>
-					<h1>This is where JS comes to the rescue.</h1>
-					<aside class="notes">
-						
-					</aside>
-				</section>
+					<h1>Lib your life.</h1>
+					<div class="stack">
+					<pre class="stack__item fragment">
+						<code class="css">
+.logo {
+	animation: myAnimation 2s linear forwards;
+}
+@keyframes myAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0, 0);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: translate(0px, 0);
+  }
+  100% {
+    transform: translate(100px, 0);
+  }
+}
+						</code>
+					</pre>
 
-				<section>
-					<h1>JS allows an easier workflow.</h1>
+					<pre class="stack__item fragment">
+						<code class="javascript">
+var el = document.getElementsByClassName('logo')
+
+Velocity(el, {
+    opacity: [1, 0],
+    scale:[1, 0]
+  },{
+    duration:500,
+    easing: "linear"
+  }
+);
+Velocity(el, {
+    translateY: '100px'
+  },{
+    duration:1000,
+    delay:500,
+    easing: "linear"
+  }
+);
+						</code>
+					</pre>
+
+					<pre class="stack__item fragment">
+						<code class="javascript">
+var el = document.getElementsByClassName('logo')
+
+TweenLite.fromTo(el, .5, {
+    opacity:0,
+    scale:0,
+    ease:"Linear.easeNone"
+  },{
+    opacity:1,
+    scale:1,
+    ease:"Linear.easeNone",
+    onComplete: function(){
+      TweenLite.to(el, 1, {
+        delay:.5,
+        y:100,
+        ease:"Linear.easeNone"
+      });
+    }
+  }
+);
+						</code>
+					</pre>
+					</div><!--end stack-->
 					<aside class="notes">
-						
+						Libraries make for an easier workflow. This is SO important.
 					</aside>
 				</section>
 
