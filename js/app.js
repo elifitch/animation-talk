@@ -213,33 +213,48 @@ function indTrans(){
   })
 }
 
+function boing(){
+  var target = $('.js-boing-target');
+  target.on('click',function(){
+    target.velocity({translateY: "-200px"},600,[500,15]).velocity("reverse")
+  })
+}
+
+var animGradRAF;
+function animGrad(){
+  $('body').append('<div class="animated-gradient"></div>');
+  var start = null;
+  // var element = document.getElementById("SomeElementYouWantToAnimate");
+  var element = $('.animated-gradient')[0]
+  console.log(element)
+  var rot = 0;
+  function step() {
+    rot++
+    console.log(rot)
+    element.style.background = 'linear-gradient('+rot*20+'deg, #2980b9 0%,#9B59B6 100%)';
+    animGradRAF = window.requestAnimationFrame(step);
+  }
+
+  window.requestAnimationFrame(step);
+}
+function killAnimGrad(){
+  $('.animated-gradient').remove();
+  window.cancelAnimationFrame(animGradRAF);
+}
+
 Reveal.addEventListener( 'fragmentshown', function( event ) {
     if( event.fragment.classList.contains('js-show-gradient') ) {
-      $('body').append('<div class="animated-gradient"></div>');
-
-      (function(){
-        var start = null;
-        // var element = document.getElementById("SomeElementYouWantToAnimate");
-        var element = $('.animated-gradient')[0]
-        var rot = 0;
-        function step() {
-          rot++
-          element.style.background = 'linear-gradient('+rot*20+'deg, #2980b9 0%,#9B59B6 100%)';
-          window.requestAnimationFrame(step);
-        }
-
-        window.requestAnimationFrame(step);
-      }())
-    } 
+      animGrad();
+    }
+    if( event.fragment.classList.contains('js-remove-gradient') ) {
+      killAnimGrad();
+    }
 
     if( event.fragment.classList.contains('js-ind-trans-trigger') ){
       indTrans();
     }
-
-    else {
-      if( $('.animated-gradient').length ) {
-        $('.animated-gradient').remove();
-      }
+    if( event.fragment.classList.contains('js-boing-trigger') ){
+      boing();
     }
 } );
 
