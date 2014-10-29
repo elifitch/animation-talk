@@ -39,7 +39,7 @@
 	</head>
 
 	<body>
-		<div class="animated-gradient"></div>
+		<!-- <div class="animated-gradient"></div> -->
 		<div class="reveal">
 
 			<!-- Any section element inside of this container is displayed as a slide -->
@@ -51,11 +51,12 @@
 
 				<section>
 					<h1>Where I shreik about</h1>
-					<h2 class="fragment">Topic</h2>
-					<h2 class="fragment">Topic</h2>
-					<h2 class="fragment">Topic</h2>
-					<h2 class="fragment">Topic</h2>
-					<h2 class="fragment">Topic</h2>
+					<h2 class="fragment">How to betterify your CSS animations</h2>
+					<h2 class="fragment">How the browser makes all your pretty pixels</h2>
+					<h2 class="fragment">When JS animation makes sense</h2>
+					<h2 class="fragment">How JS improves workflow & opens possibilites</h2>
+					<h2 class="fragment">SMIL?</h2>
+					<h2 class="fragment">Please hold "boo-urns" until the end.</h2>
 				</section>
 
 				<section>
@@ -125,28 +126,39 @@
 				</section>
 
 				<section>
-					<h1>Browser rendering concerns</h1>
-					<p class="fragment">Layout</p>
-					<p class="fragment">Paint</p>
-					<p class="fragment">Composite</p>
+					<h1>Performance is<br><span class="fragment">fucking</span><br>important</h1>
+					
+					<!-- <div class="translate"></div> -->
+					<aside class="notes">
+						Talk about the facebook study
+					</aside>
+				</section>
+
+				<section>
+					<h1>Browser rendering steps</h1>
+					<h3 class="fragment">Layout</h3>
+					<h3 class="fragment">Paint</h3>
+					<h3 class="fragment">Composite</h3>
 
 					<aside class="notes">
 						Describe layering, composting, painting.
+						Layout is figuring out where everything is on the screen and how big it is.
+
 						Avoid layout: layout is really really fucking expensive
 						Also if you're changing heights, widths etc can change the position of other elements it causes more layout changes and more and more and more and OH GOD
 					</aside>
 				</section>
 
 				<section>
-					<h1>Why this matters</h1>
+					<h1>Why layout is expensive</h1>
 					<div class="fragment" style="display: inline-block; width: 40%; margin-right: 5%; text-align: left; vertical-align: top">
-						<h3>Left</h3>
+						<h3>Height</h3>
 						<hr>
 						<img src="img/layout-paint-composite.png" style="max-height: 500px"/>
 					</div>
 
 					<div class="fragment" style="display: inline-block; width: 40%; margin-right: 5%; text-align: left; vertical-align: top">
-						<h3>TranslateX</h3>
+						<h3>Transform</h3>
 						<hr>
 						<img src="img/just-composite.png" style="max-height: 500px"/>
 					</div>
@@ -184,22 +196,23 @@
 					</div>
 					
 					<aside class="notes">
-						Describe layering, composting, painting.
-						Avoid layout: layout is really really fucking expensive
-						Also if you're changing heights, widths etc can change the position of other elements it causes more layout changes and more and more and more and OH GOD
+						be mindful of layout in JS too, CSS often triggered by JS
 					</aside>
 				</section>
 
 				<section>
 					<h1>TLDR:</h1>
-					<h3 class="fragment" style="text-align: left">Whenever possible, use opacity and transforms</h3>
-					<h3 class="fragment" style="text-align: left">Don't stress too bad about color/background unless doing it to a shitton of elements</h3>
-					<h3 class="fragment" style="text-align: left">Try not to use CSS for layout properties, and if you do, be careful out there kids</h3>
+					<h3 class="fragment" style="text-align: left">opacity/transforms > height/width/background/etc</h3>
+					<h3 class="fragment" style="text-align: left">Don't stress too bad about color/background unless doing it to a shitton of elements, in a huge</h3>
+					<h3 class="fragment" style="text-align: left">Try not to animate layout triggering properties if you can</h3>
+					<!-- <h3 class="fragment" style="text-align: left">Avoid Layout thrash</h3>
+					<h3 class="fragment" style="text-align: left">Be mindful of your paint areas</h3>
+					<h3 class="fragment" style="text-align: left">Use the GPU when you can</h3> -->
 					
 					<aside class="notes">
-						Describe layering, composting, painting.
-						Avoid layout: layout is really really fucking expensive
-						Also if you're changing heights, widths etc can change the position of other elements it causes more layout changes and more and more and more and OH GOD
+						Evaluate how much of the screen will get relayed out or repainted. If you have a fixed background on the page, when you scroll the browser has to continually repaint because elements are changing relative to the fixed background behind them.
+
+						Avoid running a shitton of layout operations like duh. If you're doing a loop where you have to read styles, store it in a var beforehand so you wont continually ask the browser to read the size of an element
 					</aside>
 				</section>
 
@@ -212,23 +225,46 @@
 					</aside>
 				</section>
 
-				<section>
-					<h2 class="fragment">Independent transforms</h2>
-					<h2 class="fragment">Complex easing (physics!)</h2>
-					<h2 class="fragment">Granular control</h2>
-					<h2 class="fragment">Animating along a curve or path</h2>
-					<h2 class="fragment">Animating a ton of elements simultaneously</h2>
-					<h2 class="fragment">IE8 support! <span class="fragment">hahaha </span><span class="fragment">hah </span><span class="fragment">haa... </span><span class="fragment">but seriously. </span></h2>
-					
-					<aside class="notes">
-						Should I do a slide showing each of these things? probably. so where do those slides go??
-					</aside>
-				</section>
-
 				<section data-background="https://gimmebar-assets.s3.amazonaws.com/4f4fe1d47cd85.gif">
 					<h1>JS gives you the power.</h1>
 					
 					<aside class="notes"></aside>
+				</section>
+
+				<section>
+					<h2 class="fragment">Independent transforms</h2>
+					<!-- <iframe id="cp_embed_5617a718d5abb68caae7c0600236e7b1" src="//codepen.io/GreenSock/embed/5617a718d5abb68caae7c0600236e7b1?height=300&amp;theme-id=1&amp;slug-hash=5617a718d5abb68caae7c0600236e7b1&amp;user=GreenSock&amp;default-tab=result&amp;animations=run" scrolling="no" frameborder="0" height="300" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe> -->
+					<h2 class="fragment">Complex easing (physics!)</h2>
+					<h2 class="fragment">Animating weird stuff</h2>
+					<h2 class="fragment">Animating along a curve or path</h2>
+					<h2 class="fragment">Randomized animations</h2>
+					<h2 class="fragment">IE8 support! <span class="fragment">hahaha </span><span class="fragment">hah </span><span class="fragment">haa... </span><span class="fragment">but seriously. </span></h2>
+					
+					<aside class="notes">
+						BREAK INTO SLIDES
+					</aside>
+				</section>
+
+				<section>
+					<h1 class="js-ind-trans-target">Independent transforms</h1>
+					<span class="js-ind-trans-trigger fragment"></span>
+					<!-- <iframe id="cp_embed_5617a718d5abb68caae7c0600236e7b1" src="//codepen.io/GreenSock/embed/5617a718d5abb68caae7c0600236e7b1?height=500&amp;theme-id=1&amp;slug-hash=5617a718d5abb68caae7c0600236e7b1&amp;user=GreenSock&amp;default-tab=result&amp;animations=run" scrolling="no" frameborder="0" height="500" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe> -->
+				</section>
+
+				<section>
+					<h1>Complex easing (physics!)</h1>
+					<!-- <iframe id="cp_embed_hyeDg" src="//codepen.io/julianshapiro/embed/hyeDg?height=500&amp;theme-id=8287&amp;slug-hash=hyeDg&amp;default-tab=result&amp;user=julianshapiro" scrolling="no" frameborder="0" height="500" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe> -->
+				</section>
+
+				<section>
+					<h1>Animating weird stuff</h1>
+					<span class="js-show-gradient fragment"></span>
+					<span class="js-hide-gradient fragment"></span>
+				</section>
+
+				<section>
+					<h1>Animating along a curve or path</h1>
+					
 				</section>
 
 				<section>
@@ -242,7 +278,6 @@
 
 				<section>
 					<h1>setInterval vs. requestAnimationFrame</h1>
-					<!-- <iframe id="cp_embed_5617a718d5abb68caae7c0600236e7b1" src="//codepen.io/GreenSock/embed/5617a718d5abb68caae7c0600236e7b1?height=300&amp;theme-id=1&amp;slug-hash=5617a718d5abb68caae7c0600236e7b1&amp;user=GreenSock&amp;default-tab=result&amp;animations=run" scrolling="no" frameborder="0" height="300" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe> -->
 					<img class="fragment" src="img/setinterval.png"/>
 					<aside class="notes">
 						With RAF "The browser can optimize concurrent animations together into a single reflow and repaint cycle, leading to higher fidelity animation. For example, JS-based animations synchronized with CSS transitions or SVG SMIL." Also Animations in inactive tabs will stop, allowing the CPU to chill. It's also synced with refresh rate so you won't drop frames
@@ -254,14 +289,14 @@
 
 					<pre>
 						<code class="javascript fragment">
-var width = 0;
+var opacity = 0;
 
 // runs every 17ms to try to achieve 60fps (1000ms/60 ~= 17ms).
-var draw = setInterval(function() {
-	if(width <= 100) {
-		element.style.width = (width += 1)+'%';
+var fadeIn = setInterval(function() {
+	if(opacity < 1) {
+		element.style.opacity = (opacity += 0.05);
 	} else {
-		clearInterval(draw)
+		clearInterval(fadeIn)
 	}
 }, 17);
 						</code>
@@ -271,29 +306,28 @@ var draw = setInterval(function() {
 						<code class="javascript fragment">
 // requestAnimationFrame: Attempts to run at 60fps based on
 // whether the browser is in an optimal state.
-var width = 0;
+var opacity = 0;
 
-function draw() {
-       if(width <= 100){
-         window.requestAnimationFrame(draw);
-       } 
-        
-        element.style.width = (width += 1)+'%';
+var fadeIn = function() {
+       if(opacity < 1){
+         window.requestAnimationFrame(fadeIn);
+         element.style.opacity = (opacity += 0.05);
+       }
 }
 
-draw();
+fadeIn();
 						</code>
 					</pre>
 						
 
 					<aside class="notes">
-						You can also get a start time and continue the animation until a certain amount of progress has happened if you want to have time based animations
+						You can also get a start time and continue the animation until a certain amount of progress has happened if you want to have time based animations, or wrap it in a settimeout with the timing set as 1000/desiredFramerate
 						If there's just one "complex" anim in a project (simple button hovers and shit but one rotating gradient), just roll your own JS animation
 						However, if you have more than a handful of these, really really consider using a library.
 					</aside>
 				</section>
 
-				<section>
+				<!-- <section>
 					<h1>Don't forget your library card</h1>
 					<h2 class="fragment">GSAP</h2>
 					<h2 class="fragment">Velocity.js</h2>
@@ -301,7 +335,7 @@ draw();
 					<aside class="notes">
 
 					</aside>
-				</section>
+				</section> -->
 
 				<section>
 					<h1>Workflow</h1>
@@ -329,7 +363,7 @@ draw();
 						</code>
 					</pre>
 
-					<p class="fragment">So what happens when the somebody says the translateX should take extra 400ms?</p>
+					<p class="fragment">So what happens when somebody wants the translate to take an extra 400ms?</p>
 					
 					<!-- <div class="translate"></div> -->
 					<aside class="notes"></aside>
@@ -419,11 +453,25 @@ TweenLite.fromTo(el, .5, {
 					</pre>
 					</div><!--end stack-->
 					<aside class="notes">
+						Libraries make the type of rapid changes and experimentation ESSENTIAL to creating good animations totally trivial.
+						Easier than wrangling with keyframes, and yeah, probably easier than rolling your own RAF loops.
 						Libraries make for an easier workflow. This is SO important.
 					</aside>
 				</section>
 
 				<section>
+					<h1>Moar toys:</h1>
+					<h3 class="fragment">Reverse / yoyo</h3>
+					<h3 class="fragment">TweenLite.from</h3>
+					<h3 class="fragment">Sequencing</h3>
+					<h3 class="fragment">Granular control</h3>
+					<aside class="notes">
+						BREAK INTO SLIDES
+					</aside>
+				</section>
+
+				<section>
+					<h1 class="fragment fade-out">Workflow is important</h1>
 					<h1 class="fragment">Easier changes</h1>
 					<h1 class="fragment">More experimentation</h1>
 					<h1 class="fragment">Better work</h1>
@@ -433,14 +481,31 @@ TweenLite.fromTo(el, .5, {
 				</section>
 
 				<section>
-					<h1>JS also lets you do some seriously rad shit.</h1>
+					<h1>Performance</h1>
+					<h3 class="fragment">Global timing loop for all animations</h3>
+					<h3 class="fragment">Going to impressive lengths to minimize layout thrash (seeing a pattern there?)</h3>
 					<aside class="notes">
-						Plus points of JS animation (hit these points in the next few slides):
-							Better for workflow
-							Also means easier experimentation and better results
-							Independent transforms
-							like animating gradient degrees
-							granular animation triggers (bad description, figure this out) but like scroll anims, mouse position shit, etc
+						Timer optimization fixes 2 issues:
+						1) too many timers firing at once reduces frame rates due to the browser’s overhead of maintaining them, and 2) improperly marking the time at which your animation begins results in dropped frames (usually you have the animation start when you click the button, but due to a myriad of factors like CPU overhead, other JS logic at the same time, etc) can cause a delay in when you start to see the anim, dropping early frames.
+
+						You could write these optimizations into your own hand crafted animation code, but then A. your code becomes harder to manage, and B. you end up creating an animation library yourself.
+					</aside>
+				</section>
+
+				<section>
+					<h1>Another dependency</h1>
+					<h1 class="fragment">le UGH!</h1>
+					<aside class="notes">
+						Velocity ~35kb
+						TweenLite & CSSPlugin ~60kb
+					</aside>
+				</section>
+
+				<section>
+					<h1>Don't be a stupid.</h1>
+					<h1 class="fragment">Weigh the costs and benefits.</h1>
+					<aside class="notes">
+						
 					</aside>
 				</section>
 
@@ -454,6 +519,9 @@ TweenLite.fromTo(el, .5, {
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>
 		<script src="js/velocity.min.js"></script>
+		<!--<script src="js/tweenlite.min.js"></script>
+		<script src="js/gsap-css-plugin.min.js"></script>-->
+		<script src="js/tweenmax.min.js"></script>
 
 
 		<script src="js/app.js"></script>

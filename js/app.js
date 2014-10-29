@@ -196,8 +196,50 @@ canvasAnim();
 // }())
 
 
-//add to left container
+//creating divs for CSS property comparison
 for(var i=0; i<=100; i++) {
   $('.left-container').append('<div class="left"></div>');
   $('.translate-container').append('<div class="translate"></div>');
 }
+
+function indTrans(){
+  var target = $('.js-ind-trans-target');
+  var rotation = 0;
+
+  TweenMax.to(target,1.2, {scale:1.2, force3D:true, yoyo:true, repeat:-1, ease:Power1.easeInOut})
+  target.on('click',function(){
+    rotation += 360;
+    TweenMax.to(target, 2, {rotation: rotation, ease:Elastic.easeOut})
+  })
+}
+
+Reveal.addEventListener( 'fragmentshown', function( event ) {
+    if( event.fragment.classList.contains('js-show-gradient') ) {
+      $('body').append('<div class="animated-gradient"></div>');
+
+      (function(){
+        var start = null;
+        // var element = document.getElementById("SomeElementYouWantToAnimate");
+        var element = $('.animated-gradient')[0]
+        var rot = 0;
+        function step() {
+          rot++
+          element.style.background = 'linear-gradient('+rot*20+'deg, #2980b9 0%,#9B59B6 100%)';
+          window.requestAnimationFrame(step);
+        }
+
+        window.requestAnimationFrame(step);
+      }())
+    } 
+
+    if( event.fragment.classList.contains('js-ind-trans-trigger') ){
+      indTrans();
+    }
+
+    else {
+      if( $('.animated-gradient').length ) {
+        $('.animated-gradient').remove();
+      }
+    }
+} );
+

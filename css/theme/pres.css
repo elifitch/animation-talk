@@ -3100,6 +3100,8 @@
   background: linear-gradient(135deg, #2980b9 0%, #9B59B6 100%);
   height: 100%;
   width: 100%;
+  top: 0;
+  left: 0;
   position: absolute; }
 
 .reveal pre {
@@ -3115,5 +3117,8 @@
   left: 0;
   width: 100%;
   height: 100%; }
+
+body {
+  background: linear-gradient(135deg, #2980b9 0%, #9B59B6 100%); }
 
 /*# sourceMappingURL=pres.css.map */
