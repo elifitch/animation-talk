@@ -195,16 +195,61 @@
 						<p>translate</p>
 					</div>
 					
+					<aside class="notes"></aside>
+				</section>
+
+				<section>
+					<h1>Performance is more than properties</h1>
+					
 					<aside class="notes">
 						be mindful of layout in JS too, CSS often triggered by JS
 					</aside>
 				</section>
 
 				<section>
+					<h1>Don't thrash</h1>
+					<div class="stack">
+						<pre class="stack__item">
+							<code class="javascript fragment">
+var h1 = element1.clientHeight;           // Read (measures the element)
+element1.style.height = (h1 * 2) + 'px';  // Write (invalidates current layout)
+
+var h2 = element2.clientHeight;           // Read (measure again, so must trigger layout)
+element2.style.height = (h1 * 2) + 'px';  // Write (invalidates current layout)
+
+var h3 = element3.clientHeight;           // Read (measure again, so must trigger layout)
+element3.style.height = (h3 * 2) + 'px';  // Write (invalidates current layout)
+							</code>
+						</pre>
+
+						<pre class="stack__item">
+							<code class="javascript fragment">
+// Readenzie
+var h1 = element1.clientHeight; 
+var h2 = element2.clientHeight; 
+var h3 = element3.clientHeight; 
+
+// Writenzie
+element1.style.height = (h1 * 2) + 'px';
+element2.style.height = (h1 * 2) + 'px';
+element3.style.height = (h3 * 2) + 'px';
+							</code>
+						</pre>
+					</div>
+					<aside class="notes">
+						Credit Wilson Page http://wilsonpage.co.uk/preventing-layout-thrashing/
+						be mindful of layout in JS too, CSS often triggered by JS
+
+						Problem is, nobody actually writes code this way. Segue into workflow/library shit?
+						You can use something like fastdom, or a dedicated anim library that includes batching as a performance enhancer
+					</aside>
+				</section>
+
+				<section>
 					<h1>TLDR:</h1>
 					<h3 class="fragment" style="text-align: left">opacity/transforms > height/width/background/etc</h3>
-					<h3 class="fragment" style="text-align: left">Don't stress too bad about color/background unless doing it to a shitton of elements, in a huge</h3>
-					<h3 class="fragment" style="text-align: left">Try not to animate layout triggering properties if you can</h3>
+					<h3 class="fragment" style="text-align: left">Try not to repaint huge areas</h3>
+					<h3 class="fragment" style="text-align: left">Batch reads and writes together</h3>
 					<!-- <h3 class="fragment" style="text-align: left">Avoid Layout thrash</h3>
 					<h3 class="fragment" style="text-align: left">Be mindful of your paint areas</h3>
 					<h3 class="fragment" style="text-align: left">Use the GPU when you can</h3> -->
@@ -219,6 +264,7 @@
 				<section>
 					<h1>Why not use CSS to animate everything?</h1>
 					<h2 class="fragment">It can be a little limiting.</h2>
+					<h2 class="fragment">When you get crazy, so does your workflow</h2>
 					
 					<aside class="notes">
 						I know which properties give the most performance now, I can optimize my CSS animations, why not use for everything.
@@ -228,7 +274,9 @@
 				<section data-background="https://gimmebar-assets.s3.amazonaws.com/4f4fe1d47cd85.gif">
 					<h1>JS gives you the power.</h1>
 					
-					<aside class="notes"></aside>
+					<aside class="notes">
+						
+					</aside>
 				</section>
 
 				<section>
@@ -264,16 +312,27 @@
 				</section>
 
 				<section>
-					<h1>Animating along a curve or path</h1>
+					<h1 class="fragment js-anim-curve-trigger">Animating along a bezier <span class="js-anim-curve-target" style="display: inline-block">curve</span></h1>
 					
 				</section>
 
 				<section>
-					<h1>jQuery $.animate is the devil.</h1>
+					<h1 class="fragment">Wait, isn't JS animation slow?</h1>
 					
 					<aside class="notes">
-						A lot of people (maybe not y'all, but still a lot of people) conflate jQuery and Javascript animation.
-						jQuery takes a bad approach to animating, using setinterval instead of requestanimationframe
+						
+					</aside>
+				</section>
+
+				<section data-background="img/myth-busters.gif">
+					<h1>Myth Busting Time.</h1>
+					<div class="stack">
+						<h1 class="stack__item fragment current-visible">JS !== janky</h1>
+						<h1 class="stack__item fragment current-visible">jQuery $.animate is the devil.</h1>
+					</div>
+					
+					<aside class="notes">
+						
 					</aside>
 				</section>
 

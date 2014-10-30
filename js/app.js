@@ -216,7 +216,8 @@ function indTrans(){
 function boing(){
   var target = $('.js-boing-target');
   target.on('click',function(){
-    target.velocity({translateY: "-200px"},600,[500,15]).velocity("reverse")
+    target.velocity({translateY: -200},600,[500,15]).velocity("reverse")
+    // TweenMax.to(target, 0.6, {y: -200, repeat: 1, yoyo: true, ease: Elastic.easeInOut})
   })
 }
 
@@ -231,7 +232,7 @@ function animGrad(){
   function step() {
     rot++
     console.log(rot)
-    element.style.background = 'linear-gradient('+rot*20+'deg, #2980b9 0%,#9B59B6 100%)';
+    element.style.background = 'linear-gradient('+rot*5+'deg, #2980b9 0%,#9B59B6 100%)';
     animGradRAF = window.requestAnimationFrame(step);
   }
 
@@ -240,6 +241,10 @@ function animGrad(){
 function killAnimGrad(){
   $('.animated-gradient').remove();
   window.cancelAnimationFrame(animGradRAF);
+}
+function curve(){
+  var target = $('.js-anim-curve-target');
+  TweenMax.from(target, 2, {bezier:{type:"cubic", values:[{x:0, y:0}, {x:-150, y:100}, {x:-300, y:800}, {x:-800, y:-100}], }, ease:Power1.easeInOut});
 }
 
 Reveal.addEventListener( 'fragmentshown', function( event ) {
@@ -256,5 +261,9 @@ Reveal.addEventListener( 'fragmentshown', function( event ) {
     if( event.fragment.classList.contains('js-boing-trigger') ){
       boing();
     }
+    if( event.fragment.classList.contains('js-anim-curve-trigger') ){
+      curve();
+    }
+    
 } );
 
