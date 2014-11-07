@@ -32,6 +32,10 @@
 		height: 100%;
 	}
 }
+.js-random-anim span {
+	display: inline-block;
+	// opacity: 0;
+}
 body {
 	background: linear-gradient(135deg, #2980b9 0%,#9B59B6 100%)
 }

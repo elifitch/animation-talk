@@ -4,6 +4,13 @@
   position: absolute;
   bottom: -100%;
   right: -10%; }
+.reveal section.work .isl-arrow__arrow {
+  stroke-dasharray: 1600px;
+  stroke-dashoffset: 1600px;
+  transition: all 2.4s; }
+  .reveal section.work .isl-arrow__arrow.draw-arrow {
+    stroke-dashoffset: 0;
+    transition: all 2.4s; }
 
 .particle {
   background: whitesmoke;
@@ -3117,6 +3124,9 @@
   left: 0;
   width: 100%;
   height: 100%; }
+
+.js-random-anim span {
+  display: inline-block; }
 
 body {
   background: linear-gradient(135deg, #2980b9 0%, #9B59B6 100%); }

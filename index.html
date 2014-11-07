@@ -50,16 +50,6 @@
 				</section>
 
 				<section>
-					<h1>Where I shreik about</h1>
-					<h2 class="fragment">How to betterify your CSS animations</h2>
-					<h2 class="fragment">How the browser makes all your pretty pixels</h2>
-					<h2 class="fragment">When JS animation makes sense</h2>
-					<h2 class="fragment">How JS improves workflow & opens possibilites</h2>
-					<h2 class="fragment">SMIL?</h2>
-					<h2 class="fragment">Please hold "boo-urns" until the end.</h2>
-				</section>
-
-				<section>
 					<h1>So, who is this guy?</h1>
 					<h3 class="emojicon fragment">¯\(º_o)/¯</h3>
 				</section>
@@ -84,9 +74,9 @@
 								<path d="M3125,1618v62c0,0,91.1,0,122,0c40,0,59-20,59-60.2c0-0.6,0-1.8,0-1.8H3125z"/>
 							</g>
 						</g>
-						<path fill="none" stroke="#FFFFFF" stroke-width="4" stroke-dasharray="5000" stroke-miterlimit="10" d="M3018,1765c0,0-489.6,410.3-905.6-253.7
+						<path class="isl-arrow__arrow" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-dasharray="5000" stroke-miterlimit="10" d="M3018,1765c0,0-489.6,410.3-905.6-253.7
 							c0,0,64,1,162,54.5l-134,97.5c0,0-17.3-109.2-17.3-146">
-							<animate attributeType="XML" attributeName="stroke-dashoffset" from="5000" to="0" dur="10s" repeatCount="1" fill="freeze"/>
+							<!-- <animate attributeType="XML" attributeName="stroke-dashoffset" from="5000" to="0" dur="10s" repeatCount="1" fill="freeze"/> -->
 						</path>
 	 				</svg>
 				</section>
@@ -97,6 +87,26 @@
 					<span class="fragment" style="display: block;">interaction design,</span>
 					<span class="fragment" style="display: block;">and...whatever this is.</span>
 					</h1>
+				</section>
+
+				<section>
+					<h1>Tonight I'm shreiking about</h1>
+					<h2 class="fragment">How to betterify your CSS animations</h2>
+					<h2 class="fragment">How the browser makes all your pretty pixels</h2>
+					<h2 class="fragment">When JS animation makes sense</h2>
+					<h2 class="fragment">How JS improves workflow & opens possibilites</h2>
+					<h2 class="fragment">SVG / SMIL</h2>
+					<h2 class="fragment">Please hold "boo-urns" until the end.</h2>
+					<aside class="notes">
+						Performance
+						CSS animation techniques in terms of properties
+						Browser rendering steps
+						JS lets you do more stuff
+						Jankfree JS
+						Request animation frame
+
+						animation libraries for performance and workflow - This isn't going to be super pracitcal "this is how you use this neat library" type stuff, there's lots of information out there on the interwebs for that, I'm going to focus more on when and why they should be considered, and relative strengths/weaknesses
+					</aside>
 				</section>
 
 				<section>
@@ -111,17 +121,8 @@
 						Think changing the background on a ghost button, animating a button press to give the sense of 3d.
 						CSS makse such small changes really easy and quick to whip up, making carelessness easy too.
 						Using javascript to manage states is cool, but you can store your animations in a class and transition between them, CSS is driving that anim
-					</aside>
-				</section>
 
-				<section class="properties">
-					<h1>CSS properties are not created equal.</h1>
-					<div class="fragment left-container fade-out"></div>
-					<div class="fragment translate-container"></div>
-					
-					<!-- <div class="translate"></div> -->
-					<aside class="notes">
-						
+						Most people have a good handle on this and just throw them in there willy nilly without regard for performance
 					</aside>
 				</section>
 
@@ -130,7 +131,24 @@
 					
 					<!-- <div class="translate"></div> -->
 					<aside class="notes">
+						This doesn't make sense here....
 						Talk about the facebook study
+					</aside>
+				</section>
+
+				<section class="properties">
+					<h1>CSS properties are not created equal.</h1>
+					<span class="fragment js-build-left current-visible"></span>
+					<div class="fragment left-container current-visible"></div>
+					<span class="fragment js-destroy-left current-visible"></span>
+
+					<span class="fragment js-build-trans current-visible"></span>
+					<div class="fragment translate-container current-visible"></div>
+					<span class="fragment js-destroy-trans current-visible"></span>
+					
+					<!-- <div class="translate"></div> -->
+					<aside class="notes">
+						Note how they're different and say, this is due to how the browser renders things, move on to browser rendering steps, come back to this later
 					</aside>
 				</section>
 
@@ -165,6 +183,32 @@
 
 					<aside class="notes">
 						Describe this process
+					</aside>
+				</section>
+
+				<section>
+					<h1>Paint is expensive too</h1>
+					
+					<!-- show image from perfmatters 60fps talk jankfree.org about nytimes vs the verge paint times -->
+
+					<aside class="notes">
+						Describe this process
+					</aside>
+				</section>
+
+				<section class="properties">
+					<h1>Lets cheat.</h1>
+					<span class="fragment js-build-left current-visible"></span>
+					<div class="fragment left-container current-visible"></div>
+					<span class="fragment js-destroy-left current-visible"></span>
+
+					<span class="fragment js-build-trans current-visible"></span>
+					<div class="fragment translate-container current-visible"></div>
+					<span class="fragment js-destroy-trans current-visible"></span>
+					
+					<!-- <div class="translate"></div> -->
+					<aside class="notes">
+						Note how they're different and say, this is due to how the browser renders things, move on to browser rendering steps, come back to this later
 					</aside>
 				</section>
 
@@ -245,21 +289,31 @@ element3.style.height = (h3 * 2) + 'px';
 					</aside>
 				</section>
 
-				<section>
+				<!-- <section>
+					<h1>Debounce</h1>
+					<div class="stack">
+						
+					</div>
+					<aside class="notes">
+						Debouncing is a fancy pants way to say limit a function from firing too many damn times.
+						Especially important when binding to resize or scroll.
+						Why fire a function more times than the browser can even refresh?
+					</aside>
+				</section> -->
+
+
+				<!-- <section>
 					<h1>TLDR:</h1>
 					<h3 class="fragment" style="text-align: left">opacity/transforms > height/width/background/etc</h3>
 					<h3 class="fragment" style="text-align: left">Try not to repaint huge areas</h3>
 					<h3 class="fragment" style="text-align: left">Batch reads and writes together</h3>
-					<!-- <h3 class="fragment" style="text-align: left">Avoid Layout thrash</h3>
-					<h3 class="fragment" style="text-align: left">Be mindful of your paint areas</h3>
-					<h3 class="fragment" style="text-align: left">Use the GPU when you can</h3> -->
 					
 					<aside class="notes">
 						Evaluate how much of the screen will get relayed out or repainted. If you have a fixed background on the page, when you scroll the browser has to continually repaint because elements are changing relative to the fixed background behind them.
 
 						Avoid running a shitton of layout operations like duh. If you're doing a loop where you have to read styles, store it in a var beforehand so you wont continually ask the browser to read the size of an element
 					</aside>
-				</section>
+				</section> -->
 
 				<section>
 					<h1>Why not use CSS to animate everything?</h1>
@@ -315,6 +369,15 @@ element3.style.height = (h3 * 2) + 'px';
 					<h1 class="fragment js-anim-curve-trigger">Animating along a bezier <span class="js-anim-curve-target" style="display: inline-block">curve</span></h1>
 					
 				</section>
+
+				<section>
+					<h1 class="fragment js-random-anim current-visible stack__item">Randomized animation</h1>
+				</section>
+				<section>
+					<h1 class="fragment">IE8 support! <span class="fragment">hahaha </span><span class="fragment">hah </span><span class="fragment">haa... </span><span class="fragment">but seriously.</span></h1>
+					<h1 class="fragment">Not gonna show that.</h1>
+				</section>
+				
 
 				<section>
 					<h1 class="fragment">Wait, isn't JS animation slow?</h1>
@@ -520,6 +583,42 @@ TweenLite.fromTo(el, .5, {
 				</section>
 
 				<section>
+					<h1>Another example</h1>
+					<div class="stack">
+					<pre class="stack__item fragment">
+						<code class="css">
+//independent transforms example
+var target = document.getElementsByClassName('.js-ind-trans-target')[0];
+var rotation = 0;
+
+TweenMax.to(target,1.2, {scale:1.2, force3D:true, yoyo:true, repeat:-1, ease:Power1.easeInOut});
+
+target.on('click',function(){
+	rotation += 360;
+	TweenMax.to(target, 2, {rotation: rotation, ease:Elastic.easeOut})
+});
+						</code>
+					</pre>
+
+					<pre class="stack__item fragment">
+						<code class="javascript">
+//physics example
+var target = $('.js-boing-target');
+target.on('click',function(){
+	target.velocity({translateY: -200},600,[500,15]).velocity("reverse")
+})
+						</code>
+					</pre>
+
+					</div><!--end stack-->
+					<aside class="notes">
+						Libraries make the type of rapid changes and experimentation ESSENTIAL to creating good animations totally trivial.
+						Easier than wrangling with keyframes, and yeah, probably easier than rolling your own RAF loops.
+						Libraries make for an easier workflow. This is SO important.
+					</aside>
+				</section>
+
+				<section>
 					<h1>Moar toys:</h1>
 					<h3 class="fragment">Reverse / yoyo</h3>
 					<h3 class="fragment">TweenLite.from</h3>
@@ -569,6 +668,27 @@ TweenLite.fromTo(el, .5, {
 					</aside>
 				</section>
 
+				<section>
+					<h1>le OMG I love libraries</h1>
+					<h1 class="fragment">Which one is raddest?</h1>
+					<aside class="notes">
+						
+					</aside>
+				</section>
+
+				<section>
+					<h1>Greensock</h1>
+					<h2 class="fragment">Insane timlineing and control</h2>
+					<h2 class="fragment">Super simple sequencing</h2>
+					<h2 class="fragment">A tad better performance</h2>
+					<h2 class="fragment">More options and capabilites</h2>
+					<h2 class="fragment">Huge KB hit</h2>
+					<h2 class="fragment">Best when Animations ARE a core of the product</h2>
+					<aside class="notes">
+						Think interactive experiences/infographics/scrollers, canvas art, games
+					</aside>
+				</section>
+
 				
 
 			</div>
@@ -579,6 +699,7 @@ TweenLite.fromTo(el, .5, {
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>
 		<script src="js/velocity.min.js"></script>
+		<script src="js/blast.min.js"></script>
 		<!--<script src="js/tweenlite.min.js"></script>
 		<script src="js/gsap-css-plugin.min.js"></script>-->
 		<script src="js/tweenmax.min.js"></script>

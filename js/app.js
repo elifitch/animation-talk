@@ -196,10 +196,25 @@ canvasAnim();
 // }())
 
 
-//creating divs for CSS property comparison
-for(var i=0; i<=100; i++) {
-  $('.left-container').append('<div class="left"></div>');
-  $('.translate-container').append('<div class="translate"></div>');
+function buildLeft(){
+  //creating divs for CSS property comparison
+  for(var i=0; i<=100; i++) {
+    $('.left-container').append('<div class="left"></div>');
+  }
+}
+function destroyLeft(){
+  //creating divs for CSS property comparison
+    $('.left-container .left').remove();
+}
+function buildTrans(){
+  //creating divs for CSS property comparison
+  for(var i=0; i<=100; i++) {
+    $('.translate-container').append('<div class="translate"></div>');
+  }
+}
+function destroyTrans(){
+  //creating divs for CSS property comparison
+    $('.translate-container .translate').remove();
 }
 
 function indTrans(){
@@ -227,11 +242,10 @@ function animGrad(){
   var start = null;
   // var element = document.getElementById("SomeElementYouWantToAnimate");
   var element = $('.animated-gradient')[0]
-  console.log(element)
   var rot = 0;
+  
   function step() {
     rot++
-    console.log(rot)
     element.style.background = 'linear-gradient('+rot*5+'deg, #2980b9 0%,#9B59B6 100%)';
     animGradRAF = window.requestAnimationFrame(step);
   }
@@ -246,8 +260,41 @@ function curve(){
   var target = $('.js-anim-curve-target');
   TweenMax.from(target, 2, {bezier:{type:"cubic", values:[{x:0, y:0}, {x:-150, y:100}, {x:-300, y:800}, {x:-800, y:-100}], }, ease:Power1.easeInOut});
 }
+function randomAnim(){
+  $('.js-random-anim').blast({ 
+    delimiter: "character",
+    tag: "span"
+  });
+  var targets = $('.js-random-anim span');
+  var tgt = $('.js-random-anim');
+  setTimeout(function(){
+    // targets.css('opacity',1);
+    for(var i = 0; i < targets.length; i++) {
+      TweenMax.from(targets[i],Math.random()*5,{y:(Math.random()-Math.random())*200, ease:Elastic.easeOut})
+    }
+  },0)
+  
+}
 
 Reveal.addEventListener( 'fragmentshown', function( event ) {
+    if( event.fragment.classList.contains('isl-arrow') ) {
+      var arrow = document.getElementsByClassName('isl-arrow__arrow')[0]
+      arrow.classList.add('draw-arrow')
+    }
+
+    if( event.fragment.classList.contains('js-build-left') ) {
+      buildLeft();
+    }
+    if( event.fragment.classList.contains('js-destroy-left') ) {
+      destroyLeft();
+    }
+    if( event.fragment.classList.contains('js-build-trans') ) {
+      buildTrans();
+    }
+    if( event.fragment.classList.contains('js-destroy-trans') ) {
+      destroyTrans();
+    }
+
     if( event.fragment.classList.contains('js-show-gradient') ) {
       animGrad();
     }
@@ -263,6 +310,9 @@ Reveal.addEventListener( 'fragmentshown', function( event ) {
     }
     if( event.fragment.classList.contains('js-anim-curve-trigger') ){
       curve();
+    }
+    if( event.fragment.classList.contains('js-random-anim') ){
+      randomAnim();
     }
     
 } );
