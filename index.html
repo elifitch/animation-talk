@@ -95,8 +95,6 @@
 					<h2 class="fragment">How the browser makes all your pretty pixels</h2>
 					<h2 class="fragment">When JS animation makes sense</h2>
 					<h2 class="fragment">How JS improves workflow & opens possibilites</h2>
-					<h2 class="fragment">SVG / SMIL</h2>
-					<h2 class="fragment">Please hold "boo-urns" until the end.</h2>
 					<aside class="notes">
 						Performance
 						CSS animation techniques in terms of properties
@@ -189,7 +187,7 @@
 				<section>
 					<h1>Paint is expensive too</h1>
 					
-					<!-- show image from perfmatters 60fps talk jankfree.org about nytimes vs the verge paint times -->
+					<img class="fragment" src="img/paint-time.png" />
 
 					<aside class="notes">
 						Describe this process
@@ -206,9 +204,21 @@
 					<div class="fragment translate-container current-visible"></div>
 					<span class="fragment js-destroy-trans current-visible"></span>
 					
-					<!-- <div class="translate"></div> -->
 					<aside class="notes">
-						Note how they're different and say, this is due to how the browser renders things, move on to browser rendering steps, come back to this later
+						Layers aren't free, layers aren't a magic bullet.  They break sticky elements for example, b/c they fix relative to the layer, not relative to the viewport.
+						Gotta test.
+					</aside>
+				</section>
+
+				<section class="properties">
+					<h1>Test baby test</h1>
+					<h2 class="fragment">Paint areas</h2>
+					<h2 class="fragment">Layer borders</h2>
+					<h2 class="fragment">Scroll bottlenecks</h2>
+					<h2 class="fragment">FPS</h2>
+					
+					<aside class="notes">
+						If you wait too long to start testing render performance you're totally fucked.  Work with designers to make sure the cool stuff you guys dream up doesn't kerplode everything in a fireball of shit.
 					</aside>
 				</section>
 
@@ -242,65 +252,6 @@
 					<aside class="notes"></aside>
 				</section>
 
-				<section>
-					<h1>Performance is more than properties</h1>
-					
-					<aside class="notes">
-						be mindful of layout in JS too, CSS often triggered by JS
-					</aside>
-				</section>
-
-				<section>
-					<h1>Don't thrash</h1>
-					<div class="stack">
-						<pre class="stack__item">
-							<code class="javascript fragment">
-var h1 = element1.clientHeight;           // Read (measures the element)
-element1.style.height = (h1 * 2) + 'px';  // Write (invalidates current layout)
-
-var h2 = element2.clientHeight;           // Read (measure again, so must trigger layout)
-element2.style.height = (h1 * 2) + 'px';  // Write (invalidates current layout)
-
-var h3 = element3.clientHeight;           // Read (measure again, so must trigger layout)
-element3.style.height = (h3 * 2) + 'px';  // Write (invalidates current layout)
-							</code>
-						</pre>
-
-						<pre class="stack__item">
-							<code class="javascript fragment">
-// Readenzie
-var h1 = element1.clientHeight; 
-var h2 = element2.clientHeight; 
-var h3 = element3.clientHeight; 
-
-// Writenzie
-element1.style.height = (h1 * 2) + 'px';
-element2.style.height = (h1 * 2) + 'px';
-element3.style.height = (h3 * 2) + 'px';
-							</code>
-						</pre>
-					</div>
-					<aside class="notes">
-						Credit Wilson Page http://wilsonpage.co.uk/preventing-layout-thrashing/
-						be mindful of layout in JS too, CSS often triggered by JS
-
-						Problem is, nobody actually writes code this way. Segue into workflow/library shit?
-						You can use something like fastdom, or a dedicated anim library that includes batching as a performance enhancer
-					</aside>
-				</section>
-
-				<!-- <section>
-					<h1>Debounce</h1>
-					<div class="stack">
-						
-					</div>
-					<aside class="notes">
-						Debouncing is a fancy pants way to say limit a function from firing too many damn times.
-						Especially important when binding to resize or scroll.
-						Why fire a function more times than the browser can even refresh?
-					</aside>
-				</section> -->
-
 
 				<!-- <section>
 					<h1>TLDR:</h1>
@@ -330,20 +281,6 @@ element3.style.height = (h3 * 2) + 'px';
 					
 					<aside class="notes">
 						
-					</aside>
-				</section>
-
-				<section>
-					<h2 class="fragment">Independent transforms</h2>
-					<!-- <iframe id="cp_embed_5617a718d5abb68caae7c0600236e7b1" src="//codepen.io/GreenSock/embed/5617a718d5abb68caae7c0600236e7b1?height=300&amp;theme-id=1&amp;slug-hash=5617a718d5abb68caae7c0600236e7b1&amp;user=GreenSock&amp;default-tab=result&amp;animations=run" scrolling="no" frameborder="0" height="300" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe> -->
-					<h2 class="fragment">Complex easing (physics!)</h2>
-					<h2 class="fragment">Animating weird stuff</h2>
-					<h2 class="fragment">Animating along a curve or path</h2>
-					<h2 class="fragment">Randomized animations</h2>
-					<h2 class="fragment">IE8 support! <span class="fragment">hahaha </span><span class="fragment">hah </span><span class="fragment">haa... </span><span class="fragment">but seriously. </span></h2>
-					
-					<aside class="notes">
-						BREAK INTO SLIDES
 					</aside>
 				</section>
 
@@ -401,7 +338,8 @@ element3.style.height = (h3 * 2) + 'px';
 
 				<section>
 					<h1>setInterval vs. requestAnimationFrame</h1>
-					<img class="fragment" src="img/setinterval.png"/>
+					<!-- <img class="fragment" src="img/setinterval.png"/> -->
+					<iframe src="http://www.html5rocks.com/en/tutorials/speed/rendering/raf-motivation.html" style="width: 100%; height: 280px; background-color: white"></iframe>
 					<aside class="notes">
 						With RAF "The browser can optimize concurrent animations together into a single reflow and repaint cycle, leading to higher fidelity animation. For example, JS-based animations synchronized with CSS transitions or SVG SMIL." Also Animations in inactive tabs will stop, allowing the CPU to chill. It's also synced with refresh rate so you won't drop frames
 					</aside>
@@ -450,15 +388,84 @@ fadeIn();
 					</aside>
 				</section>
 
-				<!-- <section>
-					<h1>Don't forget your library card</h1>
-					<h2 class="fragment">GSAP</h2>
-					<h2 class="fragment">Velocity.js</h2>
+				<section>
+					<h1>Performance is more than properties</h1>
 					
 					<aside class="notes">
-
+						be mindful of layout in JS too, CSS often triggered by JS
 					</aside>
-				</section> -->
+				</section>
+
+				<section>
+					<h1>Don't thrash</h1>
+					<div class="stack">
+						<pre class="stack__item">
+							<code class="javascript fragment">
+var h1 = element1.clientHeight;           // Read (measures the element)
+element1.style.height = (h1 * 2) + 'px';  // Write (invalidates current layout)
+
+var h2 = element2.clientHeight;           // Read (measure again, so must trigger layout)
+element2.style.height = (h1 * 2) + 'px';  // Write (invalidates current layout)
+
+var h3 = element3.clientHeight;           // Read (measure again, so must trigger layout)
+element3.style.height = (h3 * 2) + 'px';  // Write (invalidates current layout)
+							</code>
+						</pre>
+
+						<pre class="stack__item">
+							<code class="javascript fragment">
+// Readenzie
+var h1 = element1.clientHeight; 
+var h2 = element2.clientHeight; 
+var h3 = element3.clientHeight; 
+
+// Writenzie
+element1.style.height = (h1 * 2) + 'px';
+element2.style.height = (h1 * 2) + 'px';
+element3.style.height = (h3 * 2) + 'px';
+							</code>
+						</pre>
+					</div>
+					<aside class="notes">
+						Credit Wilson Page http://wilsonpage.co.uk/preventing-layout-thrashing/
+						be mindful of layout in JS too, CSS often triggered by JS
+
+						Problem is, nobody actually writes code this way. Segue into workflow/library shit?
+						You can use something like fastdom, or a dedicated anim library that includes batching as a performance enhancer
+					</aside>
+				</section>
+
+				<section>
+					<h1>Debounce</h1>
+					<div class="stack">
+						<pre>
+							<code class="javascript">
+_.debounce = function(func, wait, immediate) {
+  var timeout, result;
+  return function() {
+    var context = this, args = arguments;
+    var later = function() {
+      timeout = null;
+      if (!immediate) result = func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) result = func.apply(context, args);
+    return result;
+  };
+};
+							</code>
+						</pre>
+					</div>
+					<aside class="notes">
+						Debouncing is a fancy pants way to say limit a function from firing too many damn times.
+						Especially important when binding to resize or scroll.
+						Why fire a function more times than the browser can even refresh?
+
+						This belongs in JS section
+					</aside>
+				</section>
 
 				<section>
 					<h1>Workflow</h1>
@@ -619,7 +626,7 @@ target.on('click',function(){
 				</section>
 
 				<section>
-					<h1>Moar toys:</h1>
+					<h1>Other nice-to-haves</h1>
 					<h3 class="fragment">Reverse / yoyo</h3>
 					<h3 class="fragment">TweenLite.from</h3>
 					<h3 class="fragment">Sequencing</h3>
@@ -682,7 +689,7 @@ target.on('click',function(){
 					<h2 class="fragment">Super simple sequencing</h2>
 					<h2 class="fragment">A tad better performance</h2>
 					<h2 class="fragment">More options and capabilites</h2>
-					<h2 class="fragment">Huge KB hit</h2>
+					<h2 class="fragment">Big KB hit</h2>
 					<h2 class="fragment">Best when Animations ARE a core of the product</h2>
 					<aside class="notes">
 						Think interactive experiences/infographics/scrollers, canvas art, games
