@@ -3112,8 +3112,7 @@
   position: absolute; }
 
 .reveal pre {
-  box-shadow: none;
-  font-size: .4em; }
+  box-shadow: none; }
 
 .reveal .stack {
   position: relative;

@@ -205,20 +205,7 @@
 					<span class="fragment js-destroy-trans current-visible"></span>
 					
 					<aside class="notes">
-						Layers aren't free, layers aren't a magic bullet.  They break sticky elements for example, b/c they fix relative to the layer, not relative to the viewport.
-						Gotta test.
-					</aside>
-				</section>
-
-				<section class="properties">
-					<h1>Test baby test</h1>
-					<h2 class="fragment">Paint areas</h2>
-					<h2 class="fragment">Layer borders</h2>
-					<h2 class="fragment">Scroll bottlenecks</h2>
-					<h2 class="fragment">FPS</h2>
-					
-					<aside class="notes">
-						If you wait too long to start testing render performance you're totally fucked.  Work with designers to make sure the cool stuff you guys dream up doesn't kerplode everything in a fireball of shit.
+						
 					</aside>
 				</section>
 
@@ -250,6 +237,22 @@
 					</div>
 					
 					<aside class="notes"></aside>
+				</section>
+
+				<section class="properties">
+					<h1>Test baby test</h1>
+					<h2 class="fragment">Paint areas</h2>
+					<h2 class="fragment">Layer borders</h2>
+					<h2 class="fragment">Scroll bottlenecks</h2>
+					<h2 class="fragment">FPS</h2>
+					
+					<aside class="notes">
+						Layers aren't free, layers aren't a magic bullet.  They break sticky elements for example, b/c they fix relative to the layer, not relative to the viewport.
+
+						Gotta test.
+
+						If you wait too long to start testing render performance you're totally fucked.  Work with designers to make sure the cool stuff you guys dream up doesn't kerplode everything in a fireball of shit.
+					</aside>
 				</section>
 
 
@@ -347,9 +350,9 @@
 
 				<section>
 					<h1>RAF isn't scary</h1>
-
-					<pre>
-						<code class="javascript fragment">
+					<div class="stack">
+						<pre class="stack__item">
+							<code class="javascript fragment">
 var opacity = 0;
 
 // runs every 17ms to try to achieve 60fps (1000ms/60 ~= 17ms).
@@ -360,11 +363,11 @@ var fadeIn = setInterval(function() {
 		clearInterval(fadeIn)
 	}
 }, 17);
-						</code>
-					</pre>
+							</code>
+						</pre>
 
-					<pre>
-						<code class="javascript fragment">
+						<pre class="stack__item">
+							<code class="javascript fragment">
 // requestAnimationFrame: Attempts to run at 60fps based on
 // whether the browser is in an optimal state.
 var opacity = 0;
@@ -377,8 +380,10 @@ var fadeIn = function() {
 }
 
 fadeIn();
-						</code>
-					</pre>
+							</code>
+						</pre>	
+					</div>
+					
 						
 
 					<aside class="notes">
@@ -423,6 +428,38 @@ var h3 = element3.clientHeight;
 element1.style.height = (h1 * 2) + 'px';
 element2.style.height = (h1 * 2) + 'px';
 element3.style.height = (h3 * 2) + 'px';
+							</code>
+						</pre>
+					</div>
+					<aside class="notes">
+						Credit Wilson Page http://wilsonpage.co.uk/preventing-layout-thrashing/
+						be mindful of layout in JS too, CSS often triggered by JS
+
+						Problem is, nobody actually writes code this way. Segue into workflow/library shit?
+						You can use something like fastdom, or a dedicated anim library that includes batching as a performance enhancer
+					</aside>
+				</section>
+
+				<section>
+					<h1>Cache = $$$</h1>
+					<div class="stack">
+						<pre class="stack__item">
+							<code class="javascript fragment">
+for(var i = 0; i < $('.herp').length; i++) {
+	$('.herp').index(i).css('background','rgb(0,'+i*5+',0,)');
+	$('.derp').index(i).text('this is derp number '+i+1)
+}
+							</code>
+						</pre>
+
+						<pre class="stack__item">
+							<code class="javascript fragment">
+var $herp = $('.herp');
+var $derp = $('.derp');
+for(var i = 0, l = $herp.length; i < l; i++) {
+	$herp.index(i).css('background','rgb(0,'+i*5+',0,)');
+	$derp.index(i).text('this is derp number '+i+1)
+}
 							</code>
 						</pre>
 					</div>
@@ -690,9 +727,24 @@ target.on('click',function(){
 					<h2 class="fragment">A tad better performance</h2>
 					<h2 class="fragment">More options and capabilites</h2>
 					<h2 class="fragment">Big KB hit</h2>
+					<h2 class="fragment">Licensing</h2>
 					<h2 class="fragment">Best when Animations ARE a core of the product</h2>
 					<aside class="notes">
+						TweenLite & CSSPlugin ~60kb
 						Think interactive experiences/infographics/scrollers, canvas art, games
+					</aside>
+				</section>
+
+				<section>
+					<h1>Velocity</h1>
+					<h2 class="fragment">UI only</h2>
+					<h2 class="fragment">Lighter KB hit</h2>
+					<h2 class="fragment">More approachable API</h2>
+					<h2 class="fragment">100% open source</h2>
+					<h2 class="fragment">Plays extra well with promises</h2>
+					<aside class="notes">
+						TweenLite & CSSPlugin ~60kb
+						Promises: http://www.smashingmagazine.com/2014/09/04/animating-without-jquery/
 					</aside>
 				</section>
 
