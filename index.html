@@ -83,14 +83,14 @@
 
 				<section class="particle" data-background="#F5F5F5">
 					<h1>And I do a lot of 
+					<span class="fragment" style="display: block;">front end development,</span>
 					<span class="fragment" style="display: block;">animation,</span>
-					<span class="fragment" style="display: block;">interaction design,</span>
 					<span class="fragment" style="display: block;">and...whatever this is.</span>
 					</h1>
 				</section>
 
 				<section>
-					<h1>Tonight I'm shreiking about</h1>
+					<h1>I'll be shreiking about</h1>
 					<h2 class="fragment">How to betterify your CSS animations</h2>
 					<h2 class="fragment">How the browser makes all your pretty pixels</h2>
 					<h2 class="fragment">When JS animation makes sense</h2>
@@ -108,11 +108,6 @@
 				</section>
 
 				<section>
-					<h1>Web Animation Technologies</h1>
-					<h3><span class="fragment">CSS&nbsp;</span><span class="fragment">|&nbsp;Javascript</span></h3>
-				</section>
-
-				<section>
 					<h1>CSS is great for <span class="fragment shrink" style="display: inline-block">small</span> state changes</h1>
 					<aside class="notes">
 						This applies to most interactions, really.
@@ -121,16 +116,6 @@
 						Using javascript to manage states is cool, but you can store your animations in a class and transition between them, CSS is driving that anim
 
 						Most people have a good handle on this and just throw them in there willy nilly without regard for performance
-					</aside>
-				</section>
-
-				<section>
-					<h1>Performance is<br><span class="fragment">fucking</span><br>important</h1>
-					
-					<!-- <div class="translate"></div> -->
-					<aside class="notes">
-						This doesn't make sense here....
-						Talk about the facebook study
 					</aside>
 				</section>
 
@@ -151,10 +136,20 @@
 				</section>
 
 				<section>
+					<h1>Performance is<br><span class="fragment">fucking</span><br>important</h1>
+					
+					<!-- <div class="translate"></div> -->
+					<aside class="notes">
+						This doesn't make sense here....
+						Talk about the facebook study
+					</aside>
+				</section>
+
+				<section>
 					<h1>Browser rendering steps</h1>
-					<h3 class="fragment">Layout</h3>
-					<h3 class="fragment">Paint</h3>
-					<h3 class="fragment">Composite</h3>
+					<h2 class="fragment">Layout</h2>
+					<h2 class="fragment">Paint</h2>
+					<h2 class="fragment">Composite</h2>
 
 					<aside class="notes">
 						Describe layering, composting, painting.
@@ -191,6 +186,8 @@
 
 					<aside class="notes">
 						Describe this process
+
+						Depends on size of paint area: ie fixed backgrounds cause janky scroll
 					</aside>
 				</section>
 
@@ -210,7 +207,7 @@
 				</section>
 
 				<section>
-					<h1>Property breakdown</h1>
+					<h1>TLDR</h1>
 					<div class="fragment" style="display: inline-block; width: 25%; margin-right: 10%; text-align: left">
 						<h3>Layout</h3>
 						<hr>
@@ -315,7 +312,7 @@
 				</section>
 				<section>
 					<h1 class="fragment">IE8 support! <span class="fragment">hahaha </span><span class="fragment">hah </span><span class="fragment">haa... </span><span class="fragment">but seriously.</span></h1>
-					<h1 class="fragment">Not gonna show that.</h1>
+					<h1 class="fragment">It's important<span class="fragment">..?</span></h1>
 				</section>
 				
 
@@ -381,7 +378,27 @@ var fadeIn = function() {
 
 fadeIn();
 							</code>
-						</pre>	
+						</pre>
+						<!-- <pre>
+							<code>
+var elem = document.getElementById('my-element'),
+  startTime = null,
+  endPos = 500, // in pixels
+  duration = 2000; // in milliseconds
+ 
+function render(time) {
+  if (time === undefined) {
+    time = new Date().getTime();
+  }
+  if (startTime === null) {
+    startTime = time;
+  }
+  if((time-startTime) <= duration) {
+    elem.style.left = ((time - startTime) / duration * endPos % endPos) + 'px';   
+  }
+}
+							</code>
+						</pre> -->
 					</div>
 					
 						
@@ -440,7 +457,7 @@ element3.style.height = (h3 * 2) + 'px';
 					</aside>
 				</section>
 
-				<section>
+				<!-- <section>
 					<h1>Cache = $$$</h1>
 					<div class="stack">
 						<pre class="stack__item">
@@ -464,11 +481,18 @@ for(var i = 0, l = $herp.length; i < l; i++) {
 						</pre>
 					</div>
 					<aside class="notes">
-						Credit Wilson Page http://wilsonpage.co.uk/preventing-layout-thrashing/
-						be mindful of layout in JS too, CSS often triggered by JS
+						This is a basic JS thing you can do to make code mor efficient
+						the performance gains from caching increase as the loops iterations increase
+					</aside>
+				</section> -->
 
-						Problem is, nobody actually writes code this way. Segue into workflow/library shit?
-						You can use something like fastdom, or a dedicated anim library that includes batching as a performance enhancer
+				<section>
+					<h1>Bind events as close as possible</h1>
+					
+					<aside class="notes">
+						Especially important with touch or scroll listeners.
+						Basically if you do 
+						https://www.youtube.com/watch?v=YyQYhhy1dZI  ~23:00
 					</aside>
 				</section>
 
@@ -476,8 +500,8 @@ for(var i = 0, l = $herp.length; i < l; i++) {
 					<h1>Debounce</h1>
 					<div class="stack">
 						<pre>
-							<code class="javascript">
-_.debounce = function(func, wait, immediate) {
+							<code class="javascript" style="min-height: 28em;">
+var debounce = function(func, wait, immediate) {
   var timeout, result;
   return function() {
     var context = this, args = arguments;
@@ -492,6 +516,12 @@ _.debounce = function(func, wait, immediate) {
     return result;
   };
 };
+
+window.addEventListener('scroll', function(){
+	debounce(function(){
+		//cool animation
+	},100)
+},false)
 							</code>
 						</pre>
 					</div>
@@ -505,9 +535,9 @@ _.debounce = function(func, wait, immediate) {
 				</section>
 
 				<section>
-					<h1>Workflow</h1>
-					<pre>
-						<code class="css">
+					<h1>Lets talk workflow</h1>
+					<pre class="fragment">
+						<code class="css" style="min-height: 23em;">
 .logo {
 	animation: myAnimation 2s linear forwards;
 }
@@ -548,7 +578,7 @@ _.debounce = function(func, wait, immediate) {
 				<section>
 					<h1>Lib your life.</h1>
 					<div class="stack">
-					<pre class="stack__item fragment">
+					<pre class="stack__item fragment" style="font-size: .45em">
 						<code class="css">
 .logo {
 	animation: myAnimation 2s linear forwards;
@@ -572,7 +602,7 @@ _.debounce = function(func, wait, immediate) {
 						</code>
 					</pre>
 
-					<pre class="stack__item fragment">
+					<pre class="stack__item fragment" style="font-size: .45em">
 						<code class="javascript">
 var el = document.getElementsByClassName('logo')
 
@@ -595,7 +625,7 @@ Velocity(el, {
 						</code>
 					</pre>
 
-					<pre class="stack__item fragment">
+					<pre class="stack__item fragment" style="font-size: .45em">
 						<code class="javascript">
 var el = document.getElementsByClassName('logo')
 
@@ -629,7 +659,7 @@ TweenLite.fromTo(el, .5, {
 				<section>
 					<h1>Another example</h1>
 					<div class="stack">
-					<pre class="stack__item fragment">
+					<pre class="stack__item fragment current-visible">
 						<code class="css">
 //independent transforms example
 var target = document.getElementsByClassName('.js-ind-trans-target')[0];
@@ -644,7 +674,7 @@ target.on('click',function(){
 						</code>
 					</pre>
 
-					<pre class="stack__item fragment">
+					<pre class="stack__item fragment current-visible">
 						<code class="javascript">
 //physics example
 var target = $('.js-boing-target');
@@ -686,10 +716,15 @@ target.on('click',function(){
 				<section>
 					<h1>Performance</h1>
 					<h3 class="fragment">Global timing loop for all animations</h3>
-					<h3 class="fragment">Going to impressive lengths to minimize layout thrash (seeing a pattern there?)</h3>
+					<h3 class="fragment">Minimizes layout thrash</h3>
+					<h3 class="fragment">Cache conversions</h3>
 					<aside class="notes">
 						Timer optimization fixes 2 issues:
 						1) too many timers firing at once reduces frame rates due to the browser’s overhead of maintaining them, and 2) improperly marking the time at which your animation begins results in dropped frames (usually you have the animation start when you click the button, but due to a myriad of factors like CPU overhead, other JS logic at the same time, etc) can cause a delay in when you start to see the anim, dropping early frames.
+
+						Caching property values across chained calls in order to minimize the occurrence of DOM querying (which is the Achilles' heel of performant DOM animation).
+						Caching unit conversion ratios (e.g. px to %, em, etc.) across sibling elements in the same call.
+						Skipping style updating when updates would be visually imperceptible.
 
 						You could write these optimizations into your own hand crafted animation code, but then A. your code becomes harder to manage, and B. you end up creating an animation library yourself.
 					</aside>
@@ -740,6 +775,7 @@ target.on('click',function(){
 					<h2 class="fragment">UI only</h2>
 					<h2 class="fragment">Lighter KB hit</h2>
 					<h2 class="fragment">More approachable API</h2>
+					<h2 class="fragment">Same syntax as jQuery</h2>
 					<h2 class="fragment">100% open source</h2>
 					<h2 class="fragment">Plays extra well with promises</h2>
 					<aside class="notes">
