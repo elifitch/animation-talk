@@ -63,8 +63,8 @@
     /* IE6-9 */ }
 
 .properties .left, .properties .translate {
-  height: 40px;
-  width: 40px;
+  height: 20px;
+  width: 20px;
   border-radius: 100%;
   display: block; }
 .properties .left {

@@ -94,15 +94,9 @@
 					<h2 class="fragment">How to betterify your CSS animations</h2>
 					<h2 class="fragment">How the browser makes all your pretty pixels</h2>
 					<h2 class="fragment">When JS animation makes sense</h2>
-					<h2 class="fragment">How JS improves workflow & opens possibilites</h2>
+					<h2 class="fragment">How to write more performant JS animations</h2>
+					<h2 class="fragment">How JS animation libraries can help</h2>
 					<aside class="notes">
-						Performance
-						CSS animation techniques in terms of properties
-						Browser rendering steps
-						JS lets you do more stuff
-						Jankfree JS
-						Request animation frame
-
 						animation libraries for performance and workflow - This isn't going to be super pracitcal "this is how you use this neat library" type stuff, there's lots of information out there on the interwebs for that, I'm going to focus more on when and why they should be considered, and relative strengths/weaknesses
 					</aside>
 				</section>
@@ -110,12 +104,21 @@
 				<section>
 					<h1>CSS is great for <span class="fragment shrink" style="display: inline-block">small</span> state changes</h1>
 					<aside class="notes">
-						This applies to most interactions, really.
-						Think changing the background on a ghost button, animating a button press to give the sense of 3d.
-						CSS makse such small changes really easy and quick to whip up, making carelessness easy too.
-						Using javascript to manage states is cool, but you can store your animations in a class and transition between them, CSS is driving that anim
+						<p>This applies to most interactions, really.</p>
+						<p>Think changing the background on a ghost button, animating a button press to give the sense of 3d.</p>
+						<p>CSS makse such small changes really easy and quick to whip up, making carelessness easy too.</p>
 
-						Most people have a good handle on this and just throw them in there willy nilly without regard for performance
+						<p>Most people have a good handle on this and just throw them in there willy nilly without regard for performance</p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Performance is<br><span class="fragment">fucking</span><br>important</h1>
+					
+					<!-- <div class="translate"></div> -->
+					<aside class="notes">
+						<p>Talk about the facebook study</p>
+						<p>Small % of users, 20-30 million</p>
 					</aside>
 				</section>
 
@@ -131,17 +134,8 @@
 					
 					<!-- <div class="translate"></div> -->
 					<aside class="notes">
-						Note how they're different and say, this is due to how the browser renders things, move on to browser rendering steps, come back to this later
-					</aside>
-				</section>
-
-				<section>
-					<h1>Performance is<br><span class="fragment">fucking</span><br>important</h1>
-					
-					<!-- <div class="translate"></div> -->
-					<aside class="notes">
-						This doesn't make sense here....
-						Talk about the facebook study
+						<p>Hmm these appear to be the same but why is one choppy</p>
+						<p>WTAF is goon on here??</p>
 					</aside>
 				</section>
 
@@ -153,10 +147,9 @@
 
 					<aside class="notes">
 						Describe layering, composting, painting.
-						Layout is figuring out where everything is on the screen and how big it is.
+						<p>Layout is figuring out where everything is on the screen and how big it is.</p>
 
-						Avoid layout: layout is really really fucking expensive
-						Also if you're changing heights, widths etc can change the position of other elements it causes more layout changes and more and more and more and OH GOD
+						<p>Layout: Also if you're changing heights, widths etc can change the position of other elements it causes more layout changes and more and more and more and OH GOD</p>
 					</aside>
 				</section>
 
@@ -175,7 +168,10 @@
 					</div>
 
 					<aside class="notes">
-						Describe this process
+						<p>Images hard to see but the orange blocks represent browser thinky time</p>
+						<p>Blue is GPU doing its thing</p>
+						<p>See how one is way easier on the browser than another?</p>
+						<p>This is b/c one prop triggers layout while the other does not</p>
 					</aside>
 				</section>
 
@@ -185,9 +181,7 @@
 					<img class="fragment" src="img/paint-time.png" />
 
 					<aside class="notes">
-						Describe this process
-
-						Depends on size of paint area: ie fixed backgrounds cause janky scroll
+						<p>Depends on size of paint area: ie fixed backgrounds cause janky scroll</p>
 					</aside>
 				</section>
 
@@ -202,7 +196,24 @@
 					<span class="fragment js-destroy-trans current-visible"></span>
 					
 					<aside class="notes">
-						
+						<p>Layers aren't free, layers aren't a magic bullet.  They break sticky elements for example, b/c they fix relative to the layer, not relative to the viewport.</p>
+						<p>On older mobile devices, you can run out of GPU memory, and have a severe stutter as a result</p>
+
+					</aside>
+				</section>
+
+				<section class="properties">
+					<h1>Test baby test</h1>
+					<h2 class="fragment">Paint areas</h2>
+					<h2 class="fragment">Layer borders</h2>
+					<h2 class="fragment">Scroll bottlenecks</h2>
+					<h2 class="fragment">FPS</h2>
+					
+					<aside class="notes">
+
+						Gotta test.
+
+						If you wait too long to start testing render performance you're totally fucked.  Work with designers to make sure the cool stuff you guys dream up doesn't kerplode everything in a fireball of shit.
 					</aside>
 				</section>
 
@@ -233,38 +244,13 @@
 						<p>translate</p>
 					</div>
 					
-					<aside class="notes"></aside>
-				</section>
-
-				<section class="properties">
-					<h1>Test baby test</h1>
-					<h2 class="fragment">Paint areas</h2>
-					<h2 class="fragment">Layer borders</h2>
-					<h2 class="fragment">Scroll bottlenecks</h2>
-					<h2 class="fragment">FPS</h2>
-					
 					<aside class="notes">
-						Layers aren't free, layers aren't a magic bullet.  They break sticky elements for example, b/c they fix relative to the layer, not relative to the viewport.
-
-						Gotta test.
-
-						If you wait too long to start testing render performance you're totally fucked.  Work with designers to make sure the cool stuff you guys dream up doesn't kerplode everything in a fireball of shit.
+						<p>Avoid layout changes, and if you have to make one, if you can isolate that element, good</p>
+						<p>Avoid continually repainting large areas (parallax for example)</p>
+						<p>Leverage transforms and opacity in creative ways to make up for other shit</p>
 					</aside>
 				</section>
 
-
-				<!-- <section>
-					<h1>TLDR:</h1>
-					<h3 class="fragment" style="text-align: left">opacity/transforms > height/width/background/etc</h3>
-					<h3 class="fragment" style="text-align: left">Try not to repaint huge areas</h3>
-					<h3 class="fragment" style="text-align: left">Batch reads and writes together</h3>
-					
-					<aside class="notes">
-						Evaluate how much of the screen will get relayed out or repainted. If you have a fixed background on the page, when you scroll the browser has to continually repaint because elements are changing relative to the fixed background behind them.
-
-						Avoid running a shitton of layout operations like duh. If you're doing a loop where you have to read styles, store it in a var beforehand so you wont continually ask the browser to read the size of an element
-					</aside>
-				</section> -->
 
 				<section>
 					<h1>Why not use CSS to animate everything?</h1>
@@ -272,7 +258,7 @@
 					<h2 class="fragment">When you get crazy, so does your workflow</h2>
 					
 					<aside class="notes">
-						I know which properties give the most performance now, I can optimize my CSS animations, why not use for everything.
+						<p>I know which properties give the most performance now, I can optimize my CSS animations, why not use for everything.</p>
 					</aside>
 				</section>
 
@@ -287,19 +273,21 @@
 				<section>
 					<h1 class="js-ind-trans-target">Independent transforms</h1>
 					<span class="js-ind-trans-trigger fragment"></span>
-					<!-- <iframe id="cp_embed_5617a718d5abb68caae7c0600236e7b1" src="//codepen.io/GreenSock/embed/5617a718d5abb68caae7c0600236e7b1?height=500&amp;theme-id=1&amp;slug-hash=5617a718d5abb68caae7c0600236e7b1&amp;user=GreenSock&amp;default-tab=result&amp;animations=run" scrolling="no" frameborder="0" height="500" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe> -->
 				</section>
 
 				<section>
 					<h1 class="js-boing-target">Complex easing (physics!)</h1>
 					<span class="js-boing-trigger fragment"></span>
-					<!-- <iframe id="cp_embed_hyeDg" src="//codepen.io/julianshapiro/embed/hyeDg?height=500&amp;theme-id=8287&amp;slug-hash=hyeDg&amp;default-tab=result&amp;user=julianshapiro" scrolling="no" frameborder="0" height="500" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe> -->
 				</section>
 
 				<section>
 					<h1>Animating weird stuff</h1>
 					<span class="js-show-gradient fragment"></span>
 					<span class="js-remove-gradient fragment"></span>
+					<aside class="notes">
+						<p>This, as we will discuss later, also applies to any javascript object property</p>
+						<p>This, as we will discuss later, also applies to any javascript object property</p>
+					</aside>
 				</section>
 
 				<section>
@@ -320,7 +308,7 @@
 					<h1 class="fragment">Wait, isn't JS animation slow?</h1>
 					
 					<aside class="notes">
-						
+						<p>Isn't shitty JS anim the whole reason CSS rose to prominence?</p>
 					</aside>
 				</section>
 
@@ -332,7 +320,8 @@
 					</div>
 					
 					<aside class="notes">
-						
+						<p>JS isn't necessarily janky. Poorly WRITTIen JS anims are janky.</p>
+						<p>Folks falsly conflate JS and JQ anims</p>
 					</aside>
 				</section>
 
@@ -341,7 +330,10 @@
 					<!-- <img class="fragment" src="img/setinterval.png"/> -->
 					<iframe src="http://www.html5rocks.com/en/tutorials/speed/rendering/raf-motivation.html" style="width: 100%; height: 280px; background-color: white"></iframe>
 					<aside class="notes">
-						With RAF "The browser can optimize concurrent animations together into a single reflow and repaint cycle, leading to higher fidelity animation. For example, JS-based animations synchronized with CSS transitions or SVG SMIL." Also Animations in inactive tabs will stop, allowing the CPU to chill. It's also synced with refresh rate so you won't drop frames
+						<p>With RAF "The browser can optimize concurrent animations together into a single reflow and repaint cycle</p>
+						<p>For example, JS-based animations synchronized with CSS transitions or SVG SMIL.</p>
+						<p>Also Animations in inactive tabs will stop, allowing the CPU to chill.</p>
+						<p>It's also synced with refresh rate so you won't drop frames</p>
 					</aside>
 				</section>
 
@@ -414,7 +406,9 @@ function render(time) {
 					<h1>Performance is more than properties</h1>
 					
 					<aside class="notes">
-						be mindful of layout in JS too, CSS often triggered by JS
+						<p>Remember how I said JS animation isn't janky, shitty JS animation is janky?</p>
+						<p>Theres some easy tips to improve your JS performance</p>
+						<p>As long as we're here, lets Not just talk anims, but also w/ events that trigger anims</p>
 					</aside>
 				</section>
 
@@ -491,6 +485,7 @@ for(var i = 0, l = $herp.length; i < l; i++) {
 					
 					<aside class="notes">
 						Especially important with touch or scroll listeners.
+
 						Basically if you do 
 						https://www.youtube.com/watch?v=YyQYhhy1dZI  ~23:00
 					</aside>
@@ -717,16 +712,17 @@ target.on('click',function(){
 					<h1>Performance</h1>
 					<h3 class="fragment">Global timing loop for all animations</h3>
 					<h3 class="fragment">Minimizes layout thrash</h3>
-					<h3 class="fragment">Cache conversions</h3>
+					<h3 class="fragment">Won't animate anything visually imperceptible</h3>
 					<aside class="notes">
-						Timer optimization fixes 2 issues:
-						1) too many timers firing at once reduces frame rates due to the browser’s overhead of maintaining them, and 2) improperly marking the time at which your animation begins results in dropped frames (usually you have the animation start when you click the button, but due to a myriad of factors like CPU overhead, other JS logic at the same time, etc) can cause a delay in when you start to see the anim, dropping early frames.
+						<p>1) too many timers firing at once reduces frame rates due to the browser’s overhead of maintaining them</p>
+						<p>2) improperly marking the time at which your animation begins results in dropped frames (usually you have the animation start when you click the button, but due to a myriad of factors like CPU overhead, other JS logic at the same time, etc) can cause a delay in when you start to see the anim, dropping early frames.</p>
 
-						Caching property values across chained calls in order to minimize the occurrence of DOM querying (which is the Achilles' heel of performant DOM animation).
-						Caching unit conversion ratios (e.g. px to %, em, etc.) across sibling elements in the same call.
-						Skipping style updating when updates would be visually imperceptible.
+						<p>Caching property values across chained calls in order to minimize the occurrence of DOM querying (which is the Achilles' heel of performant DOM animation).</p>
+						<p>Caching unit conversion ratios (e.g. px to %, em, etc.) across sibling elements in the same call.</p>
 
-						You could write these optimizations into your own hand crafted animation code, but then A. your code becomes harder to manage, and B. you end up creating an animation library yourself.
+						<p>Skipping style updating when updates would be visually imperceptible.</p>
+
+						<p>You could write these optimizations into your own hand crafted animation code, but then A. your code becomes harder to manage, and B. you end up creating an animation library yourself.</p>
 					</aside>
 				</section>
 

@@ -198,7 +198,7 @@ canvasAnim();
 
 function buildLeft(){
   //creating divs for CSS property comparison
-  for(var i=0; i<=100; i++) {
+  for(var i=0; i<=200; i++) {
     $('.left-container').append('<div class="left"></div>');
   }
 }
@@ -208,7 +208,7 @@ function destroyLeft(){
 }
 function buildTrans(){
   //creating divs for CSS property comparison
-  for(var i=0; i<=100; i++) {
+  for(var i=0; i<=200; i++) {
     $('.translate-container').append('<div class="translate"></div>');
   }
 }
