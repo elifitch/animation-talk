@@ -43,27 +43,34 @@ body {
 //thanks
 .thanks path {
 	fill: none;
-	stroke-width: 5;
+	stroke-width: 3;
 	stroke: white;
+	stroke-linejoin: round;
 }
 .thanks .draw {
 	stroke-dashoffset: 0;
 }
 .t__stick {
-	stroke-dasharray: 135px;
+	stroke-dasharray: 140px;
+	stroke-dashoffset: 140px;
 }
 .t__hat {
-	stroke-dasharray: 207px;
+	stroke-dasharray: 210px;
+	stroke-dashoffset: 210px;
 }
 .hanks {
 	stroke-dasharray: 1300px;
+	stroke-dashoffset: 1300px;
 }
 .expl__dot {
-	stroke-dasharray: 10px;
+	stroke-dasharray: 20px;
+	stroke-dashoffset: 20px;
 }
 .expl__stroke {
 	stroke-dasharray: 100px;
+	stroke-dashoffset: 100px;
 }
 .underline {
-
+	stroke-dasharray: 370px;
+	stroke-dashoffset: 370px;
 }

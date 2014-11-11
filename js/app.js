@@ -276,10 +276,35 @@ function randomAnim(){
   
 }
 
+function thanksAnim(){
+  var $tStick = $('.t__stick')
+  var $tHat = $('.t__hat')
+  var $hanks = $('.hanks')
+  var $explDot = $('.expl__dot')
+  var $explStroke = $('.expl__stroke')
+  var $underline = $('.underline')
+
+  // $tStick.velocity({strokeDashoffset: 0},{duration: 500})
+  // $tHat.velocity({strokeDashoffset: 0},{duration: 500, delay: 500})
+  // $hanks.velocity({strokeDashoffset: 0},{duration: 3000, delay: 1000})
+  // $explStroke.velocity({strokeDashoffset: 0},{duration: 500, delay: 4000})
+  // $explDot.velocity({strokeDashoffset: 0},{duration: 500, delay: 4500})
+  // $underline.velocity({strokeDashoffset: 0},{duration: 1000, delay: 5000})
+  // $tStick.velocity({strokeDashoffset: 0},{duration: 500})
+  TweenMax.to($tStick, .5, {strokeDashoffset: 0});
+  TweenMax.to($tHat, .5, {strokeDashoffset: 0, delay: .5});
+  TweenMax.to($hanks, 3, {strokeDashoffset: 0, delay: 1});
+  TweenMax.to($explStroke, .5, {strokeDashoffset: 0, delay: 4});
+  TweenMax.to($explDot, .5, {strokeDashoffset: 0, delay: 4.5});
+  TweenMax.to($underline, 1, {strokeDashoffset: 0, delay: 5});
+
+}
+
 Reveal.addEventListener( 'fragmentshown', function( event ) {
     if( event.fragment.classList.contains('isl-arrow') ) {
       var arrow = document.getElementsByClassName('isl-arrow__arrow')[0]
       arrow.classList.add('draw-arrow')
+      alert('asdf')
     }
 
     if( event.fragment.classList.contains('js-build-left') ) {
@@ -313,6 +338,9 @@ Reveal.addEventListener( 'fragmentshown', function( event ) {
     }
     if( event.fragment.classList.contains('js-random-anim') ){
       randomAnim();
+    }
+    if( event.fragment.classList.contains('js-thanks') ){
+      thanksAnim();
     }
     
 } );
