@@ -564,8 +564,17 @@ window.addEventListener('scroll', function(){
 				<section data-background="img/blinds.gif">
 					<h2 class="fragment">This, basically.</h2>
 					<aside class="notes">
-						Managing CSS keyframes, especially when they get complex, can be hard, it can be time consuming.
-						Impedes experimentation.
+						<p>You have to add 400ms to the duration and go back and recalc all the percentages relative to the new time and agh</p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>donde esta la biblioteca</h1>
+					<h2 class="fragment">Velocity</h2>
+					<h2 class="fragment">Greensock/GSAP</h2>
+					<aside class="notes">
+						<p>Managing CSS keyframes, especially when they get complex, can be hard, it can be time consuming.</p>
+						<p>Impedes experimentation.</p>
 						And in the end, when you want to get creative, CSS animation is limiting(no independent transforms, different steps with different easing etc)
 					</aside>
 				</section>
@@ -645,13 +654,16 @@ TweenLite.fromTo(el, .5, {
 					</pre>
 					</div><!--end stack-->
 					<aside class="notes">
-						Libraries make the type of rapid changes and experimentation ESSENTIAL to creating good animations totally trivial.
-						Easier than wrangling with keyframes, and yeah, probably easier than rolling your own RAF loops.
-						Libraries make for an easier workflow. This is SO important.
+						<p>Expressed in terms of time, not percents more intutive</p>
+						<p>Performing multi anims on 1 element is easy, b/c instead of writing 1 super complex keyframes, you can just chain velocity or GSAP calls (come in, drop down)</p>
+						<p>Both of these examples show how you can feed in start values for the element different from its resting CSS which can be useful</p>
+
+
+						<p>Easier than wrangling with keyframes, and yeah, probably easier than rolling your own RAF loops.</p>
 					</aside>
 				</section>
 
-				<section>
+				<!-- <section>
 					<h1>Another example</h1>
 					<div class="stack">
 					<pre class="stack__item fragment current-visible">
@@ -679,22 +691,26 @@ target.on('click',function(){
 						</code>
 					</pre>
 
-					</div><!--end stack-->
+					</div>
 					<aside class="notes">
 						Libraries make the type of rapid changes and experimentation ESSENTIAL to creating good animations totally trivial.
 						Easier than wrangling with keyframes, and yeah, probably easier than rolling your own RAF loops.
 						Libraries make for an easier workflow. This is SO important.
 					</aside>
-				</section>
+				</section> -->
 
 				<section>
 					<h1>Other nice-to-haves</h1>
 					<h3 class="fragment">Reverse / yoyo</h3>
-					<h3 class="fragment">TweenLite.from</h3>
 					<h3 class="fragment">Sequencing</h3>
 					<h3 class="fragment">Granular control</h3>
+					<h3 class="fragment">TweenLite.from</h3>
 					<aside class="notes">
-						BREAK INTO SLIDES
+						<p>R/yy makes it super easy to go back to the original position, w/ CSS you have to make the anim go to 50%, and build it back to orig yourself, its unintuitive</p>
+						<p>Sequencing: instead of specifying a huge keyframes you can just chain anims together. If you want to change one, you can change the ONE. Doesn't screw up the maths for the whole thing</p>
+						<p>Last two only GSAP</p>
+						<p>If you're making a super super complex animation(10+ seconds long), storing it in a timeline means you can scrub to different parts to experiment, rather than waiting until the end every time you iterate</p>
+						<p>Allows you to easily breathe life into static elements</p>
 					</aside>
 				</section>
 
@@ -704,7 +720,7 @@ target.on('click',function(){
 					<h1 class="fragment">More experimentation</h1>
 					<h1 class="fragment">Better work</h1>
 					<aside class="notes">
-						
+						<p>Animation by its very nature is iterative and experimental</p>
 					</aside>
 				</section>
 
@@ -753,16 +769,19 @@ target.on('click',function(){
 
 				<section>
 					<h1>Greensock</h1>
-					<h2 class="fragment">Insane timlineing and control</h2>
-					<h2 class="fragment">Super simple sequencing</h2>
-					<h2 class="fragment">A tad better performance</h2>
 					<h2 class="fragment">More options and capabilites</h2>
+					<h2 class="fragment">Insane timlineing and control</h2>
+					<h2 class="fragment">A tad better performance</h2>
 					<h2 class="fragment">Big KB hit</h2>
 					<h2 class="fragment">Licensing</h2>
-					<h2 class="fragment">Best when Animations ARE a core of the product</h2>
+					<h2 class="fragment">Best for 1 pagers, rich motion design, webGL/canvas/games</h2>
 					<aside class="notes">
-						TweenLite & CSSPlugin ~60kb
-						Think interactive experiences/infographics/scrollers, canvas art, games
+						<p>It can do more. A lot more. It can tween any property of any javascrpit object. BIG distinction. Means that it's not just for UI animation, but for WebGL, canvas, games, and other shit my puny human brain can't even dream up</p>
+						<p>Timlining both good for workflow and make it easier to have animations overlap, sequence, etc</p>
+						<p>I'm unsure as to why, but it performs a smidge better than velocity in ultra high stress situations</p>
+						<p>TweenLite & CSSPlugin ~60kb</p>
+						<p>Have to pay to use it in a product</p>
+						<p>For the fun and the frivolous</p>
 					</aside>
 				</section>
 
@@ -774,9 +793,49 @@ target.on('click',function(){
 					<h2 class="fragment">Same syntax as jQuery</h2>
 					<h2 class="fragment">100% open source</h2>
 					<h2 class="fragment">Plays extra well with promises</h2>
+					<h2 class="fragment">Best for UI animation in applications</h2>
 					<aside class="notes">
-						TweenLite & CSSPlugin ~60kb
-						Promises: http://www.smashingmagazine.com/2014/09/04/animating-without-jquery/
+						<p>It's a UI animation tool, well suited for it, and w/o the bloat/features of GSAP</p>
+						<p>~30kb, all in</p>
+						<p>At least to me, it makes a bit more sense. Take sequencing for example, you just follow it with another .velocity, don't need to mess around w/ callbacks</p>
+						<p>this is huge. The examples we showed thusfar was to how to use velocity w/o jquery. However, if you use jquery you can literally just include velocity, and do a find/replace for .animate, and you've gotten a massive, free performance boost</p>
+						<p>Julian is a great guy, loves PRs, easy to get involved in community</p>
+						<p>Each velocity call returns a promise object</p>
+					</aside>
+				</section>
+
+				<section>
+					<h2 class="fragment">Use CSS for simple state changes</h2>
+					<h2 class="fragment">Be aware of how your code impacts browser rendering</h2>
+					<h2 class="fragment">Test render performance as you work</h2>
+					<h2 class="fragment">Avoid $.animate and setInterval</h2>
+					<h2 class="fragment">JS libs make sense in a certain set of circumstances</h2>
+					<aside class="notes">
+						<p>Conclusion</p>
+					</aside>
+				</section>
+
+				<section>
+					<svg class="thanks" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 413.3 209.7" enable-background="new 0 0 413.3 209.7" xml:space="preserve">
+						<path class="t__stick" fill="none" stroke="#000000" stroke-miterlimit="10" d="M35.7,118.7c0,0-0.3,20,10,20s22.2-14.5,23.7-17.3
+							c6-11.1,8.3-14.7,11-20.3c5.2-10.8,6.3-24.2,14-34c6.8-8.6,13.3-16.3,13.3-16.3"/>
+						<!-- <path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,209.7"/> -->
+						<path class="hanks" fill="none" stroke="#000000" stroke-miterlimit="10" d="M83.3,129c0,0,46.3-26.7,87.3-96.7s-17.1-6.6-24,19
+							C139.8,77,116,124.7,116,124.7s30.7-40,34.7-35.7c4,4.3-5,19-5.3,26c-0.3,7,4,17.3,16.7,4.3s20.6-30.3,28.1-27.7
+							c7.5,2.7,2.5,13,2.5,13s2.2-14.3-4.7-11.5s-26.2,26.7-15.8,27.5c10.3,0.8,22.1-16,22.1-16s-4.4,18.8,2.3,17.3s24.1-27,26.1-27.7
+							c2-0.7,8.2-1.7,0.7,14.7s-8,18.8-8,18.8s18-24.5,25-23.2s-6.2,13.3-6.2,17s0.8,11.2,16,4s24.5-15.5,49.2-50
+							c24.7-34.5,16.2-46.5,5.3-30.5c-10.8,16-25.5,59.7-31.2,70s-13.8,25.3-13.8,25.3s18.2-45.7,40.8-47.7s10.3,19,4.5,20.3
+							s-10.3,4.5-26.5-1.3c0,0,10.2,0.7,19.3,17.7c9.2,17,24.3-9.5,32.7-14.7c8.3-5.2,19.7-17.3,15.8-20.3c-3.8-3-8.3-3.3-8.2,9.8
+							c0.2,13.2,7.2,29.7-0.3,31.8c-7.5,2.2-14.3-3-18.2-8c0,0,13.7,23,45.2,3"/>
+						<path class="t__hat" fill="none" stroke="#000000" stroke-miterlimit="10" d="M158.3,15.7c0,0-13.2,15.5-70.5,23.8s-46.3,60-27.8,47.8
+							s31.3-34.8,31.3-34.8"/>
+						<!--<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M387.7,121.1c5.2-10.8,17.6-83.2,25.2-93"/>-->
+						<path class="expl__stroke" fill="none" stroke="#000000" stroke-miterlimit="10" d="M411.7,27.8c-5,11-15.4,83.7-22.8,93.6"/>
+						<path class="expl__dot" fill="none" stroke="#000000" stroke-miterlimit="10" d="M387.7,136.3c-3.1-11.6-0.5,7.5-1-4.9"/>
+						<path class="underline" fill="none" stroke="#000000" stroke-miterlimit="10" d="M28.2,172c44.3,8.1,322.7-13.5,364.8,3.6"/>
+					</svg>
+
+					<aside class="notes">
 					</aside>
 				</section>
 

@@ -3130,4 +3130,27 @@
 body {
   background: linear-gradient(135deg, #2980b9 0%, #9B59B6 100%); }
 
+.thanks path {
+  fill: none;
+  stroke-width: 5;
+  stroke: white; }
+
+.thanks .draw {
+  stroke-dashoffset: 0; }
+
+.t__stick {
+  stroke-dasharray: 135px; }
+
+.t__hat {
+  stroke-dasharray: 207px; }
+
+.hanks {
+  stroke-dasharray: 1300px; }
+
+.expl__dot {
+  stroke-dasharray: 10px; }
+
+.expl__stroke {
+  stroke-dasharray: 100px; }
+
 /*# sourceMappingURL=pres.css.map */
