@@ -291,12 +291,19 @@ function thanksAnim(){
   // $explDot.velocity({strokeDashoffset: 0},{duration: 500, delay: 4500})
   // $underline.velocity({strokeDashoffset: 0},{duration: 1000, delay: 5000})
   // $tStick.velocity({strokeDashoffset: 0},{duration: 500})
-  TweenMax.to($tStick, .5, {strokeDashoffset: 0});
-  TweenMax.to($tHat, .5, {strokeDashoffset: 0, delay: .5});
-  TweenMax.to($hanks, 3, {strokeDashoffset: 0, delay: 1});
-  TweenMax.to($explStroke, .5, {strokeDashoffset: 0, delay: 4});
-  TweenMax.to($explDot, .5, {strokeDashoffset: 0, delay: 4.5});
-  TweenMax.to($underline, 1, {strokeDashoffset: 0, delay: 5});
+  TweenMax.to($tStick, .25, {strokeDashoffset: 0});
+  TweenMax.to($tHat, .25, {strokeDashoffset: 0, delay: .25});
+  TweenMax.to($hanks, 1.5, {strokeDashoffset: 0, delay: .5});
+  TweenMax.to($explStroke, .25, {strokeDashoffset: 0, delay: 2});
+  TweenMax.to($explDot, .25, {strokeDashoffset: 0, delay: 2.25});
+  TweenMax.to($underline, .5, {strokeDashoffset: 0, delay: 2.5});
+  
+  // TweenMax.to($tStick, .5, {strokeDashoffset: 0});
+  // TweenMax.to($tHat, .5, {strokeDashoffset: 0, delay: .5});
+  // TweenMax.to($hanks, 3, {strokeDashoffset: 0, delay: 1});
+  // TweenMax.to($explStroke, .5, {strokeDashoffset: 0, delay: 4});
+  // TweenMax.to($explDot, .5, {strokeDashoffset: 0, delay: 4.5});
+  // TweenMax.to($underline, 1, {strokeDashoffset: 0, delay: 5});
 
 }
 

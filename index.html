@@ -262,6 +262,7 @@
 					
 					<aside class="notes">
 						<p>I know which properties give the most performance now, I can optimize my CSS animations, why not use for everything.</p>
+						<p>When you think in terms of what CSS will let you do you will never fulfil your potential</p>
 					</aside>
 				</section>
 
@@ -302,8 +303,8 @@
 					<h1 class="fragment js-random-anim current-visible stack__item">Randomized animation</h1>
 				</section>
 				<section>
-					<h1 class="fragment">IE8 support! <span class="fragment">hahaha </span><span class="fragment">hah </span><span class="fragment">haa... </span><span class="fragment">but seriously.</span></h1>
-					<h1 class="fragment">It's important<span class="fragment">..?</span></h1>
+					<h1 class="fragment">IE8/9 support! <span class="fragment">hahaha </span><span class="fragment">hah </span><span class="fragment">haa... </span><span class="fragment">.......</span></h1>
+					<h1 class="fragment">Moving on.</h1>
 				</section>
 				
 
@@ -347,14 +348,14 @@
 							<code class="javascript fragment">
 var opacity = 0;
 
-// runs every 17ms to try to achieve 60fps (1000ms/60 ~= 17ms).
+// runs every 16ms to try to achieve 60fps (1000ms/60 ~= 16ms).
 var fadeIn = setInterval(function() {
 	if(opacity < 1) {
 		element.style.opacity = (opacity += 0.05);
 	} else {
 		clearInterval(fadeIn)
 	}
-}, 17);
+}, 16);
 							</code>
 						</pre>
 
@@ -412,6 +413,7 @@ function render(time) {
 						<p>Remember how I said JS animation isn't janky, shitty JS animation is janky?</p>
 						<p>Theres some easy tips to improve your JS performance</p>
 						<p>As long as we're here, lets Not just talk anims, but also w/ events that trigger anims</p>
+						<p>JS performance could be a whole talk in and of itself, there are a lot of things like binding events close to the </p>
 					</aside>
 				</section>
 
@@ -446,6 +448,7 @@ element3.style.height = (h3 * 2) + 'px';
 						</pre>
 					</div>
 					<aside class="notes">
+						<p>especially bad w/ jQuery. Makes it so easy to read and write to the dom, that people do it willy nilly w/o regard for performance</p>
 						Credit Wilson Page http://wilsonpage.co.uk/preventing-layout-thrashing/
 						be mindful of layout in JS too, CSS often triggered by JS
 
@@ -454,40 +457,13 @@ element3.style.height = (h3 * 2) + 'px';
 					</aside>
 				</section>
 
-				<!-- <section>
-					<h1>Cache = $$$</h1>
-					<div class="stack">
-						<pre class="stack__item">
-							<code class="javascript fragment">
-for(var i = 0; i < $('.herp').length; i++) {
-	$('.herp').index(i).css('background','rgb(0,'+i*5+',0,)');
-	$('.derp').index(i).text('this is derp number '+i+1)
-}
-							</code>
-						</pre>
-
-						<pre class="stack__item">
-							<code class="javascript fragment">
-var $herp = $('.herp');
-var $derp = $('.derp');
-for(var i = 0, l = $herp.length; i < l; i++) {
-	$herp.index(i).css('background','rgb(0,'+i*5+',0,)');
-	$derp.index(i).text('this is derp number '+i+1)
-}
-							</code>
-						</pre>
-					</div>
-					<aside class="notes">
-						This is a basic JS thing you can do to make code mor efficient
-						the performance gains from caching increase as the loops iterations increase
-					</aside>
-				</section> -->
-
 				<section>
-					<h1>Bind events as close as possible</h1>
+					<h1>Bind events as close to target as possible</h1>
 					
 					<aside class="notes">
-						Especially important with touch or scroll listeners.
+						<p>See this a lot when you're having interactions on an element that isn't there when page loads, like a confirm button on form or something</p>
+						<p>Binding to document preempts all input until the event fires.</p>
+						<p>Especially important with touch or scroll listeners.</p>
 
 						Basically if you do 
 						https://www.youtube.com/watch?v=YyQYhhy1dZI  ~23:00
@@ -532,6 +508,37 @@ window.addEventListener('scroll', function(){
 					</aside>
 				</section>
 
+				<!-- <section>
+					<h1>Cache = $$$</h1>
+					<div class="stack">
+						<pre class="stack__item">
+							<code class="javascript fragment">
+for(var i = 0; i < $('.herp').length; i++) {
+	$('.herp').index(i).css('background','rgb(0,'+i*5+',0,)');
+	$('.derp').index(i).text('this is derp number '+i+1)
+}
+							</code>
+						</pre>
+
+						<pre class="stack__item">
+							<code class="javascript fragment">
+var $herp = $('.herp');
+var $derp = $('.derp');
+for(var i = 0, l = $herp.length; i < l; i++) {
+	$herp.index(i).css('background','rgb(0,'+i*5+',0,)');
+	$derp.index(i).text('this is derp number '+i+1)
+}
+							</code>
+						</pre>
+					</div>
+					<aside class="notes">
+						This is a basic JS thing you can do to make code mor efficient
+						the performance gains from caching increase as the loops iterations increase
+					</aside>
+				</section> -->
+
+				
+
 				<section>
 					<h1>Lets talk workflow</h1>
 					<pre class="fragment">
@@ -568,6 +575,7 @@ window.addEventListener('scroll', function(){
 					<h2 class="fragment">This, basically.</h2>
 					<aside class="notes">
 						<p>You have to add 400ms to the duration and go back and recalc all the percentages relative to the new time and agh</p>
+						<p>It sucks, we've all had to do it, but it doesn't have to be this way</p>
 					</aside>
 				</section>
 
@@ -739,7 +747,7 @@ target.on('click',function(){
 						<p>Caching property values across chained calls in order to minimize the occurrence of DOM querying (which is the Achilles' heel of performant DOM animation).</p>
 						<p>Caching unit conversion ratios (e.g. px to %, em, etc.) across sibling elements in the same call.</p>
 
-						<p>Skipping style updating when updates would be visually imperceptible.</p>
+						<p>Kind of like a debounce, function only runs when nec. Skipping style updating when updates would be visually imperceptible.</p>
 
 						<p>You could write these optimizations into your own hand crafted animation code, but then A. your code becomes harder to manage, and B. you end up creating an animation library yourself.</p>
 					</aside>
