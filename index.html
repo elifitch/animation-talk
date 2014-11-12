@@ -90,6 +90,9 @@
 					<span class="fragment" style="display: block;">animation,</span>
 					<span class="fragment" style="display: block;">and...whatever this is.</span>
 					</h1>
+					<aside class="notes">
+						<p>Fun, frivolous, experiments like this guy</p>
+					</aside>
 				</section>
 
 				<section>
@@ -157,8 +160,8 @@
 				</section>
 
 				<section>
-					<h1>Layout is slow</h1>
-					<div class="fragment" style="display: inline-block; width: 40%; margin-right: 5%; text-align: left; vertical-align: top">
+					<h1>Mind your layout</h1>
+					<!-- <div class="fragment" style="display: inline-block; width: 40%; margin-right: 5%; text-align: left; vertical-align: top">
 						<h3>Height</h3>
 						<hr>
 						<img class="img--expandable" src="img/layout-paint-composite.png" style="max-height: 500px"/>
@@ -168,7 +171,7 @@
 						<h3>Transform</h3>
 						<hr>
 						<img class="img--expandable" src="img/just-composite.png" style="max-height: 500px"/>
-					</div>
+					</div> -->
 
 					<aside class="notes">
 						<p>Images hard to see but the orange blocks represent browser thinky time</p>
@@ -179,7 +182,7 @@
 				</section>
 
 				<section>
-					<h1>Paint is expensive too</h1>
+					<h1>Paint is slow</h1>
 					
 					<img class="fragment" src="img/paint-time.png" />
 
@@ -410,10 +413,12 @@ function render(time) {
 					<h1>Performance is more than properties</h1>
 					
 					<aside class="notes">
+						<p>Just talking 2 easy things to have a big impact</p>
+						<p>JS performance could be a whole talk in and of itself</p>
 						<p>Remember how I said JS animation isn't janky, shitty JS animation is janky?</p>
 						<p>Theres some easy tips to improve your JS performance</p>
 						<p>As long as we're here, lets Not just talk anims, but also w/ events that trigger anims</p>
-						<p>JS performance could be a whole talk in and of itself, there are a lot of things like binding events close to the </p>
+						
 					</aside>
 				</section>
 
@@ -457,7 +462,7 @@ element3.style.height = (h3 * 2) + 'px';
 					</aside>
 				</section>
 
-				<section>
+				<!-- <section>
 					<h1>Bind events as close to target as possible</h1>
 					
 					<aside class="notes">
@@ -468,7 +473,7 @@ element3.style.height = (h3 * 2) + 'px';
 						Basically if you do 
 						https://www.youtube.com/watch?v=YyQYhhy1dZI  ~23:00
 					</aside>
-				</section>
+				</section> -->
 
 				<section>
 					<h1>Debounce</h1>
@@ -785,7 +790,7 @@ target.on('click',function(){
 					<h2 class="fragment">A tad better performance</h2>
 					<h2 class="fragment">Big KB hit</h2>
 					<h2 class="fragment">Licensing</h2>
-					<h2 class="fragment">Best for 1 pagers, rich motion design, webGL/canvas/games</h2>
+					<h2 class="fragment">Best for 1 pagers, rich motion design, webGL/canvas/games/experiments</h2>
 					<aside class="notes">
 						<p>It can do more. A lot more. It can tween any property of any javascrpit object. BIG distinction. Means that it's not just for UI animation, but for WebGL, canvas, games, and other shit my puny human brain can't even dream up</p>
 						<p>Timlining both good for workflow and make it easier to have animations overlap, sequence, etc</p>
@@ -802,7 +807,7 @@ target.on('click',function(){
 					<h2 class="fragment">Lighter KB hit</h2>
 					<h2 class="fragment">More approachable API</h2>
 					<h2 class="fragment">Same syntax as jQuery</h2>
-					<h2 class="fragment">100% open source</h2>
+					<h2 class="fragment">100% open source & free</h2>
 					<h2 class="fragment">Plays extra well with promises</h2>
 					<h2 class="fragment">Best for UI animation in applications</h2>
 					<aside class="notes">
@@ -817,10 +822,11 @@ target.on('click',function(){
 
 				<section>
 					<h1>TLDR:</h1>
-					<h2 class="fragment">Use CSS for simple state changes</h2>
+					<!-- <h2 class="fragment">Use CSS for simple state changes</h2> -->
 					<h2 class="fragment">Be aware of how your code impacts browser rendering</h2>
 					<h2 class="fragment">Test render performance as you work</h2>
 					<h2 class="fragment">Avoid $.animate and setInterval</h2>
+					<h2 class="fragment">Debounce & don't thrash</h2>
 					<h2 class="fragment">JS libs make sense in a certain set of circumstances</h2>
 					<aside class="notes">
 						<p>Conclusion</p>
