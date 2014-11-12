@@ -3127,6 +3127,12 @@
 .js-random-anim span {
   display: inline-block; }
 
+.img--expandable {
+  background: white !important; }
+
+.img--expandable:hover {
+  transform: scale(1.5) translateY(-25%); }
+
 body {
   background: linear-gradient(135deg, #2980b9 0%, #9B59B6 100%); }
 

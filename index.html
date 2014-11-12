@@ -51,7 +51,7 @@
 
 				<section>
 					<h1>So, who is this guy?</h1>
-					<h3 class="emojicon fragment">¯\(º_o)/¯</h3>
+					<h3 class="emojicon">¯\(º_o)/¯</h3>
 				</section>
 
 				<section>
@@ -79,6 +79,9 @@
 							<!-- <animate attributeType="XML" attributeName="stroke-dashoffset" from="5000" to="0" dur="10s" repeatCount="1" fill="freeze"/> -->
 						</path>
 	 				</svg>
+	 				<aside class="notes">
+						<p>recruiting</p>
+					</aside>
 				</section>
 
 				<section class="particle" data-background="#F5F5F5">
@@ -97,7 +100,7 @@
 					<h2 class="fragment">How to write more performant JS animations</h2>
 					<h2 class="fragment">How JS animation libraries can help</h2>
 					<aside class="notes">
-						animation libraries for performance and workflow - This isn't going to be super pracitcal "this is how you use this neat library" type stuff, there's lots of information out there on the interwebs for that, I'm going to focus more on when and why they should be considered, and relative strengths/weaknesses
+						<p>This isn't going to be super pracitcal "this is how you use this neat library" type stuff, there's lots of information out there on the interwebs for that, I'm going to focus more on when and why they should be considered, and relative strengths/weaknesses</p>
 					</aside>
 				</section>
 
@@ -154,17 +157,17 @@
 				</section>
 
 				<section>
-					<h1>Why layout is expensive</h1>
+					<h1>Layout is slow</h1>
 					<div class="fragment" style="display: inline-block; width: 40%; margin-right: 5%; text-align: left; vertical-align: top">
 						<h3>Height</h3>
 						<hr>
-						<img src="img/layout-paint-composite.png" style="max-height: 500px"/>
+						<img class="img--expandable" src="img/layout-paint-composite.png" style="max-height: 500px"/>
 					</div>
 
 					<div class="fragment" style="display: inline-block; width: 40%; margin-right: 5%; text-align: left; vertical-align: top">
 						<h3>Transform</h3>
 						<hr>
-						<img src="img/just-composite.png" style="max-height: 500px"/>
+						<img class="img--expandable" src="img/just-composite.png" style="max-height: 500px"/>
 					</div>
 
 					<aside class="notes">
@@ -218,7 +221,7 @@
 				</section>
 
 				<section>
-					<h1>TLDR</h1>
+					<h1>Property Breakdown</h1>
 					<div class="fragment" style="display: inline-block; width: 25%; margin-right: 10%; text-align: left">
 						<h3>Layout</h3>
 						<hr>
@@ -805,6 +808,7 @@ target.on('click',function(){
 				</section>
 
 				<section>
+					<h1>TLDR:</h1>
 					<h2 class="fragment">Use CSS for simple state changes</h2>
 					<h2 class="fragment">Be aware of how your code impacts browser rendering</h2>
 					<h2 class="fragment">Test render performance as you work</h2>

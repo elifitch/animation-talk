@@ -304,7 +304,6 @@ Reveal.addEventListener( 'fragmentshown', function( event ) {
     if( event.fragment.classList.contains('isl-arrow') ) {
       var arrow = document.getElementsByClassName('isl-arrow__arrow')[0]
       arrow.classList.add('draw-arrow')
-      alert('asdf')
     }
 
     if( event.fragment.classList.contains('js-build-left') ) {
